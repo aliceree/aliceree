@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Kontakty — LinkedIn, GitHub a e-mail." />
+    <title>Contacts — Alice Ree</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Přeskočit na obsah</a>
+
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="brand" href="./index.html" aria-label="Domů">ALICE REE</a>
+
+        <nav class="nav" aria-label="Hlavní navigace">
+            <a class="nav__link" href="#" aria-disabled="true">About</a>
+          <a class="nav__link" href="#" aria-disabled="true">Projects</a>
+          <a class="nav__link" href="#" aria-disabled="true">Resources</a>
+          <a class="nav__link" href="./contacts.html" aria-current="page">Contacts</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="page">
+  <section class="contact" aria-label="Kontakty">
+        <ul class="contact__list" role="list">
+          <li class="contact__item">
+            <div class="contact__label">LinkedIn</div>
+            <div class="contact__value">
+              <a href="https://linkedin.com/in/aliceree/" target="_blank" rel="noreferrer">
+                https://linkedin.com/in/aliceree/
+              </a>
+            </div>
+          </li>
+
+          <li class="contact__item">
+            <div class="contact__label">GitHub</div>
+            <div class="contact__value">
+              <a href="https://github.com/aliceree" target="_blank" rel="noreferrer">
+                github.com/aliceree
+              </a>
+            </div>
+          </li>
+
+          <li class="contact__item">
+            <div class="contact__label">Email</div>
+            <div class="contact__value">
+              <a href="mailto:aliceree.tech@gmail.com">aliceree.tech@gmail.com</a>
+            </div>
+          </li>
+        </ul>
+
+      </section>
+    </main>
+
+  </body>
+</html>

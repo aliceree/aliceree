@@ -114,6 +114,11 @@ a {
   border-bottom-color: var(--hairline);
 }
 
+.nav__link[aria-current="page"] {
+  color: var(--text);
+  border-bottom-color: var(--hairline);
+}
+
 .nav__link:focus-visible {
   outline: 2px solid rgba(47, 143, 162, 0.45);
   outline-offset: 4px;
@@ -240,7 +245,7 @@ a {
   max-width: 680px;
   margin-left: auto;
   margin-right: auto;
-  text-align: left;
+  text-align: center;
 }
 
 .contact__kicker {
@@ -269,22 +274,20 @@ a {
   list-style: none;
   padding: 0;
   margin: 0;
-  border: 1px solid var(--hairline);
   border-radius: var(--radius);
-  overflow: hidden;
 }
 
 .contact__item {
   display: grid;
-  grid-template-columns: 120px 1fr;
+  grid-template-columns: 120px minmax(0, 1fr);
   gap: 16px;
   padding: 16px 18px;
   align-items: center;
+  justify-content: center;
+  justify-items: start;
+  text-align: left;
 }
 
-.contact__item + .contact__item {
-  border-top: 1px solid var(--hairline);
-}
 
 .contact__label {
   color: rgba(23, 23, 23, 0.74);
@@ -296,10 +299,11 @@ a {
 .contact__value {
   color: var(--text);
   font-weight: 400;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 10px;
   min-width: 0;
+  justify-content: flex-start;
 }
 
 .contact__value a {
@@ -313,11 +317,11 @@ a {
 
 .contact__value a:hover {
   color: var(--text);
-  border-bottom-color: rgba(47, 143, 162, 0.55);
+  border-bottom-color: rgba(0, 0, 0, 0.55);
 }
 
 .contact__value a:focus-visible {
-  outline: 2px solid rgba(47, 143, 162, 0.45);
+  outline: 2px solid rgba(0, 0, 0, 0.45);
   outline-offset: 4px;
   border-radius: 6px;
 }
@@ -325,6 +329,11 @@ a {
 @media (max-width: 560px) {
   .contact__item {
     grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
     gap: 8px;
+  }
+  .contact__label {
+    margin-bottom: 2px;
   }
 }
