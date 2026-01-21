@@ -103,7 +103,7 @@ a {
 
 /* navigační odkazy (padding, průhledný spodní border, tlumená barva, přechody) */
 .nav__link {
-  padding: 6px 2px;
+  padding: 6px 6px;
   border-bottom: 1px solid transparent;
   color: rgba(23, 23, 23, 0.74);
   transition: border-color 160ms ease, color 160ms ease;
@@ -127,6 +127,34 @@ a {
 
 .nav__link[aria-disabled="true"] {
   cursor: default;
+}
+
+.nav__link--highlight {
+  position: relative;
+}
+
+.nav__link--highlight::after {
+  content: "";
+  position: absolute;
+  left: -6px;
+  right: -6px;
+  top: 50%;
+  height: 150%;
+  background-image: url("./highlither.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto 100%;
+  opacity: 0;
+  transform: translateY(-40%) scale(0.94);
+  transition: opacity 200ms ease, transform 220ms ease;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.nav__link--highlight:hover::after,
+.nav__link--highlight:focus-visible::after {
+  opacity: 1;
+  transform: translateY(-48%) scale(1);
 }
 
 /* kontejner stránky (centrovaný, s max šířkou a paddingem) */
