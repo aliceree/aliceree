@@ -265,10 +265,8 @@ a {
   align-items: center;
   gap: clamp(8px, 1.8vw, 16px);
 
-  /* rotace/velikost – taky snadno doladíš */
   transform: rotate(var(--note-rotate)) scale(var(--note-scale));
 
-  /* zůstane to jako overlay nad fotkou */
   z-index: 3;
   pointer-events: none;
 }
@@ -282,14 +280,33 @@ a {
   height: auto;
 }
 
+.hero__note-arrow--name {
+  width: clamp(60px, 8.4vw, 98px);
+  transform: translate(-500px, -180px); /* pozice namearrow.jpg */
+}
+
 .hero__note-arrow--face {
-  transform: translate(-500px, -100px);
+  width: clamp(43px, 6vw, 70px);
+  transform: translate(-500px, -70px); /* pozice facearrow.jpg */
 }
 
 .hero__note-text {
-  width: clamp(84px, 10.8vw, 132px);
+  width: clamp(70px, 9vw, 110px);
   height: auto;
-  transform: translate(-450px, -100px);
+  transform: translate(-500px, -120px); /* pozice thatsme.png */
+  position: relative;
+  z-index: 2;
+}
+
+.hero__note-text::after {
+  content: "";
+  position: absolute;
+  inset: -6% -10%;
+  background: url("./highlither.png") center / 100% 100% no-repeat;
+  z-index: 1;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  opacity: 0.9;
 }
 
 @media (max-width: 900px) {
@@ -317,8 +334,16 @@ a {
     width: clamp(68px, 26vw, 120px);
   }
 
+  .hero__note-arrow--name {
+    width: clamp(48px, 18.2vw, 84px);
+  }
+
+  .hero__note-arrow--face {
+    width: clamp(34px, 13vw, 60px);
+  }
+
   .hero__note-text {
-    width: clamp(73px, 21.6vw, 114px);
+    width: clamp(61px, 18vw, 95px);
   }
 }
 
