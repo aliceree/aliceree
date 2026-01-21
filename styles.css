@@ -120,6 +120,19 @@ a {
   pointer-events: none;
 }
 
+/* varianta, kdy se zvýraznění zobrazí až po najetí (např. na Contacts) */
+.brand--hover .brand__highlight::after {
+  opacity: 0;
+  transform: translate(-50%, -48%) scale(0.95);
+  transition: opacity 180ms ease, transform 200ms ease;
+}
+
+.brand--hover:hover .brand__highlight::after,
+.brand--hover:focus-visible .brand__highlight::after {
+  opacity: 1;
+  transform: translate(-50%, -48%) scale(1);
+}
+
 /* kontejner navigace (vodorovné rozložení přes flex) */
 .nav {
   display: flex;
@@ -178,6 +191,12 @@ a {
 
 .nav__link--highlight:hover::after,
 .nav__link--highlight:focus-visible::after {
+  opacity: 1;
+  transform: translate(-50%, -48%) scale(1);
+}
+
+/* trvalé zvýraznění (např. pro Contacts) */
+.nav__link--highlight.nav__link--static::after {
   opacity: 1;
   transform: translate(-50%, -48%) scale(1);
 }
