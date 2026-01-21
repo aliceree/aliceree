@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Alice's Timer</title>
+    <style>
+        @font-face {
+            font-family: 'LCD Mono';
+            src: url('https://fonts.cdnfonts.com/s/14828/LCDM2N__.woff') format('woff');
+            font-display: swap;
+        }
+
+        :root {
+            --bg: #000; /* změněno na čistou černou */
+            --neon: #ff5df7;
+            --segment-off: rgba(255, 93, 247, 0.15);
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'LCD Mono', 'Orbitron', 'Share Tech Mono', 'Roboto Mono', monospace;
+            background: var(--bg);
+            color: var(--neon);
+        }
+
+        #timerWrapper {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #timerWrapper.active {
+            display: flex;
+        }
+
+        #timer {
+            display: flex;
+            align-items: center;
+            gap: clamp(0.5rem, 2vw, 1rem);
+            margin: 0.75rem 0 1.5rem;
+        }
+
+        .digit,
+        .colon {
+            position: relative;
+            width: clamp(45px, 9vw, 80px);
+            height: clamp(90px, 18vw, 150px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .segment {
+            position: absolute;
+            background: linear-gradient(90deg, rgba(255, 93, 247, 0.6), var(--neon));
+            border-radius: 999px;
+            filter: drop-shadow(0 0 6px rgba(255, 93, 247, 0.5));
+            opacity: 0.15;
+            transition: opacity 0.2s ease;
+        }
+
+        .segment.on {
+            opacity: 1;
+        }
+
+        .segment.horizontal {
+            width: 70%;
+            height: clamp(6px, 1.2vw, 12px);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .segment.vertical {
+            width: clamp(6px, 1.2vw, 12px);
+            height: 38%;
+        }
+
+        .segment.a {
+            top: 5%;
+        }
+
+        .segment.d {
+            bottom: 5%;
+        }
+
+        .segment.g {
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .segment.b {
+            right: 8%;
+            top: 9%;
+        }
+
+        .segment.c {
+            right: 8%;
+            bottom: 9%;
+        }
+
+        .segment.e {
+            left: 8%;
+            bottom: 9%;
+        }
+
+        .segment.f {
+            left: 8%;
+            top: 9%;
+        }
+
+        .colon {
+            gap: clamp(0.5rem, 2vw, 0.8rem);
+            flex-direction: column;
+        }
+
+        .colon span {
+            width: clamp(8px, 1.3vw, 14px);
+            height: clamp(8px, 1.3vw, 14px);
+            border-radius: 50%;
+            background: var(--neon);
+            box-shadow:
+                0 0 8px rgba(255, 93, 247, 0.9),
+                0 0 16px rgba(255, 93, 247, 0.6);
+        }
+
+        .setup input {
+            width: clamp(220px, 30vw, 320px);
+            padding: 0.8rem 1rem;
+            border: none;
+            background: transparent;
+            color: #ff5df7; /* neon text */
+            font-size: 1.1rem;
+            font-family: inherit; /* dědí stejný font jako v body (LCD Mono, Orbitron, ...) */
+            letter-spacing: 0.05em;
+            text-align: center;
+            outline: none;
+            transition: color 0.2s ease;
+            caret-color: #ff5df7; /* neon caret */
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .setup input:focus {
+            color: #ff5df7;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="setup" id="setup">
+        <input id="minutesInput" type="text" inputmode="decimal" pattern="[0-9]*([.,][0-9]+)?" autocomplete="off">
+    </div>
+    <div id="timerWrapper">
+        <div id="timer" aria-live="polite"></div>
+    </div>
+
+    <script>
+        const timerEl = document.getElementById('timer');
+        const setupEl = document.getElementById('setup');
+        const minutesInput = document.getElementById('minutesInput');
+        const timerWrapper = document.getElementById('timerWrapper');
+        const segmentSequence = ['a', 'b', 'c', 'd', 'e', 'f', 'g'];
+        const horizontalSegments = new Set(['a', 'd', 'g']);
+        const segmentMap = {
+            '0': ['a', 'b', 'c', 'd', 'e', 'f'],
+            '1': ['b', 'c'],
+            '2': ['a', 'b', 'g', 'e', 'd'],
+            '3': ['a', 'b', 'g', 'c', 'd'],
+            '4': ['f', 'g', 'b', 'c'],
+            '5': ['a', 'f', 'g', 'c', 'd'],
+            '6': ['a', 'f', 'g', 'c', 'd', 'e'],
+            '7': ['a', 'b', 'c'],
+            '8': ['a', 'b', 'c', 'd', 'e', 'f', 'g'],
+            '9': ['a', 'b', 'c', 'd', 'f', 'g']
+        };
+
+        let intervalId = null;
+        let remainingSeconds = 0;
+        let isPaused = false;
+        let isRunning = false;
+
+        function formatTime(seconds) {
+            const m = String(Math.floor(seconds / 60)).padStart(2, '0');
+            const s = String(seconds % 60).padStart(2, '0');
+            return `${m}:${s}`;
+        }
+
+        function renderTimer(value) {
+            timerEl.innerHTML = '';
+            timerEl.dataset.currentValue = value;
+            [...value].forEach(char => {
+                if (char === ':') {
+                    timerEl.appendChild(createColon());
+                } else {
+                    timerEl.appendChild(createDigit(char));
+                }
+            });
+        }
+
+        function createDigit(char) {
+            const digit = document.createElement('div');
+            digit.className = 'digit';
+            const activeSegments = segmentMap[char] || [];
+
+            segmentSequence.forEach(segmentName => {
+                const span = document.createElement('span');
+                span.className = `segment ${segmentName} ${horizontalSegments.has(segmentName) ? 'horizontal' : 'vertical'}`;
+                if (activeSegments.includes(segmentName)) {
+                    span.classList.add('on');
+                }
+                digit.appendChild(span);
+            });
+
+            return digit;
+        }
+
+        function createColon() {
+            const colon = document.createElement('div');
+            colon.className = 'colon';
+            colon.appendChild(document.createElement('span'));
+            colon.appendChild(document.createElement('span'));
+            return colon;
+        }
+
+        function startCountdown(durationSeconds) {
+            clearInterval(intervalId);
+            remainingSeconds = durationSeconds;
+            isPaused = false;
+            isRunning = true;
+            setupEl.classList.add('hidden');
+            timerWrapper.classList.add('active');
+            renderTimer(formatTime(remainingSeconds));
+            intervalId = setInterval(() => {
+                if (!isPaused) {
+                    remainingSeconds = Math.max(remainingSeconds - 1, 0);
+                    renderTimer(formatTime(remainingSeconds));
+                }
+                if (remainingSeconds <= 0) {
+                    clearInterval(intervalId);
+                    intervalId = null;
+                    stopCountdown();
+                }
+            }, 1000);
+        }
+
+        function stopCountdown() {
+            isRunning = false;
+            timerWrapper.classList.remove('active');
+            setupEl.classList.remove('hidden');
+            minutesInput.focus();
+        }
+
+        minutesInput.addEventListener('keydown', event => {
+            if (event.key === 'Enter') {
+                const minutes = parseFloat(minutesInput.value);
+                if (!Number.isFinite(minutes) || minutes <= 0) {
+                    minutesInput.value = '';
+                    return;
+                }
+                const seconds = Math.round(minutes * 60);
+                startCountdown(seconds);
+                minutesInput.value = '';
+            }
+        });
+
+        // helper: toggle fullscreen (works i v Safari se fallbacky)
+        function toggleFullscreen() {
+            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                const el = document.documentElement;
+                if (el.requestFullscreen) el.requestFullscreen();
+                else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen(); // Safari
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen();
+                else if (document.webkitExitFullscreen) document.webkitExitFullscreen(); // Safari
+            }
+        }
+
+        function handleFKeyEvent(event) {
+            try {
+                const active = document.activeElement;
+                const isTyping = active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || active.isContentEditable);
+                if (isTyping) return false;
+
+                const key = event.key || String.fromCharCode(event.which || event.keyCode || 0);
+                const codeNum = event.keyCode || event.which;
+                if ((key && key.toLowerCase() === 'f') || codeNum === 70) {
+                    event.preventDefault();
+                    toggleFullscreen();
+                    return true;
+                }
+            } catch (e) {
+                // ignore
+            }
+            return false;
+        }
+
+        // keep existing keydown handler but delegate F-check into helper
+        document.addEventListener('keydown', event => {
+            // Esc = reload (stejně jako Cmd+R)
+            if (event.key === 'Escape') {
+                location.reload();
+                return;
+            }
+
+            // try fullscreen on keydown (modern browsers)
+            if (handleFKeyEvent(event)) return;
+
+            if (event.code === 'Space' && isRunning) {
+                event.preventDefault();
+                isPaused = !isPaused;
+            }
+        });
+
+        // Safari sometimes triggers 'keypress' instead of 'keydown' for printable keys —
+        // proto přidáme i posluchač na 'keypress' pro lepší kompatibilitu.
+        document.addEventListener('keypress', event => {
+            handleFKeyEvent(event);
+        });
+
+        renderTimer("00:00");
+        minutesInput.focus();
+    </script>
+</body>
+</html>

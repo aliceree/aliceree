@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Umění dat</title>
+    <!-- Moderní font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #000000;
+            --bg-soft: #000000;
+            --surface: #000000;
+            --surface-alt: #000000;
+            --text: #ffffff;
+            --text-muted: #ffffff;
+            --border-subtle: #ffffff;
+            --success: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body { 
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; 
+            margin: 0; 
+            min-height: 100vh;
+            padding: 32px 16px;
+            background: #000000;
+            color: var(--text); 
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .left {
+            width: 45%;
+            text-align: left;
+        }
+
+        .right {
+            width: 50%;
+            text-align: center;
+        }
+
+        .page {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            background: #000000;
+            border-radius: 24px;
+            padding: 32px 24px 28px;
+            box-shadow:
+                0 0 0 1px #ffffff;
+        }
+
+        header {
+            margin-bottom: 28px;
+            text-align: left;
+        }
+
+        header:empty {
+            display: none;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 3vw, 2.4rem);
+            margin: 0 0 8px;
+            letter-spacing: -0.04em;
+            color: var(--text);
+        }
+
+        h1 span {
+            color: var(--text);
+        }
+
+        h2 {
+            font-size: 1.1rem;
+            margin: 0;
+            color: var(--text);
+            font-weight: 400;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+            gap: 28px;
+            align-items: flex-start;
+        }
+
+        @media (max-width: 1100px) {
+            .layout {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        .card {
+            background: #000000;
+            border-radius: 18px;
+            padding: 18px 20px 16px;
+            border: 1px solid #ffffff;
+        }
+
+        .card + .card {
+            margin-top: 12px;
+        }
+
+        .card-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+
+        .questions { 
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .question { 
+            padding: 12px 12px 10px;
+            border-radius: 12px;
+            background: #000000;
+            border: 1px solid #ffffff;
+            text-align: left;
+        }
+
+        .question p {
+            margin: 0 0 8px;
+            font-size: 0.96rem;
+        }
+
+        .question-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .question span[id^="result"] {
+            font-size: 0.85rem;
+        }
+
+        .filters { 
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 12px;
+            align-items: center;
+        }
+
+        .filters-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 12px;
+            align-items: center;
+        }
+
+        .filters-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 12px;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin-top: 4px;
+        }
+
+        .filters label { 
+            margin-right: 4px; 
+            font-size: 0.85rem;
+            color: #ffffff;
+        }
+
+        input[type="text"], 
+        input[type="number"], 
+        select { 
+            padding: 7px 10px; 
+            font-size: 0.9rem;
+            background: #000000; 
+            color: #ffffff; 
+            border: 1px solid #ffffff; 
+            border-radius: 999px; 
+            outline: none;
+            transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease; 
+        }
+
+        /* sjednocený „pill“ vzhled pro rolovací prvky Styl / Místo */
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            padding-right: 34px;
+            min-height: 40px;
+            background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 7L10 12L15 7' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+        }
+
+        input[type="text"]:focus, 
+        input[type="number"]:focus, 
+        select:focus { 
+            border-color: #ffffff; 
+            box-shadow: 0 0 0 1px #ffffff;
+            background: #000000;
+        }
+
+        button { 
+            padding: 7px 16px; 
+            font-size: 0.9rem;
+            margin-left: 2px; 
+            background: #000000; 
+            color: #ffffff; 
+            border: 1px solid #ffffff; 
+            border-radius: 999px; 
+            cursor: pointer; 
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, filter 0.15s ease; 
+            box-shadow: none;
+            white-space: nowrap;
+        }
+
+        button:hover { 
+            transform: translateY(-1px);
+            background: #ffffff;
+            color: #000000;
+        }
+
+        button:active {
+            transform: translateY(0);
+            background: #ffffff;
+            color: #000000;
+        }
+
+        button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        button:disabled:hover {
+            background: #000000;
+            color: #ffffff;
+            transform: none;
+        }
+
+        .button-secondary {
+            background: #000000;
+            color: #ffffff;
+            border: 1px solid #ffffff;
+            box-shadow: none;
+        }
+
+        .button-secondary:hover {
+            background: #ffffff;
+            color: #000000;
+        }
+
+        .table-wrapper {
+            border-radius: 18px;
+            border: 1px solid #ffffff;
+            background: #000000;
+            padding: 12px 12px 10px;
+            overflow: auto;
+            max-height: 860px;
+        }
+
+        table { 
+            width: 100%;
+            border-collapse: collapse; 
+            table-layout: auto; 
+            font-size: 0.9rem;
+        }
+
+        th, td { 
+            padding: 10px 12px; 
+            text-align: left; 
+            border-bottom: 1px solid #ffffff; 
+        }
+
+        th { 
+            background: #000000; 
+            color: #ffffff;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.16em;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        tbody tr {
+            background: #000000;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #000000;
+        }
+
+        tbody tr:hover {
+            background: #ffffff;
+            color: #000000;
+        }
+
+        tfoot td {
+            border-top: 1px solid #ffffff;
+        }
+
+        .actions-row {
+            margin-top: 16px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .answers-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+        }
+
+        .answers-button::before {
+            content: "✓";
+            font-size: 0.9rem;
+        }
+
+        .helper-text {
+            margin-top: 4px;
+            font-size: 0.8rem;
+            color: #ffffff;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 20px 10px;
+            }
+
+            .page {
+                padding: 20px 14px 18px;
+                border-radius: 18px;
+            }
+
+            .questions {
+                gap: 10px;
+            }
+
+            .question {
+                padding: 10px;
+            }
+
+            .filters {
+                gap: 8px;
+            }
+
+            .filters-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .filters-actions {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header></header>
+
+        <div class="layout">
+            <section>
+                <div class="card">
+
+                    <div class="questions">
+                        <div class="question">
+                            <p>Kolik umělců tvořilo ve Španělsku?</p>
+                            <div class="question-controls">
+                                <input type="text" id="q1" placeholder="Vaše odpověď" oninput="toggleCheckButton(1)">
+                                <button id="btn1" onclick="checkAnswer(1)" disabled>Zkontrolovat</button>
+                                <span id="result1"></span>
+                            </div>
+                        </div>
+                        <div class="question">
+                            <p>Kolik secesních umělců pochází z Rakouska?</p>
+                            <div class="question-controls">
+                                <input type="text" id="q2" placeholder="Vaše odpověď" oninput="toggleCheckButton(2)">
+                                <button id="btn2" onclick="checkAnswer(2)" disabled>Zkontrolovat</button>
+                                <span id="result2"></span>
+                            </div>
+                        </div>
+                        <div class="question">
+                            <p>V jakém stylu tvořil Rembrandt?</p>
+                            <div class="question-controls">
+                                <input type="text" id="q3" placeholder="Vaše odpověď" oninput="toggleCheckButton(3)">
+                                <button id="btn3" onclick="checkAnswer(3)" disabled>Zkontrolovat</button>
+                                <span id="result3"></span>
+                            </div>
+                        </div>
+                        <div class="question">
+                            <p>Kolik umělců se narodilo roku 1882?</p>
+                            <div class="question-controls">
+                                <input type="text" id="q4" placeholder="Vaše odpověď" oninput="toggleCheckButton(4)">
+                                <button id="btn4" onclick="checkAnswer(4)" disabled>Zkontrolovat</button>
+                                <span id="result4"></span>
+                            </div>
+                        </div>
+                        <div class="question">
+                            <p>Kolik umělců se jménem Paul působilo ve Francii?</p>
+                            <div class="question-controls">
+                                <input type="text" id="q5" placeholder="Vaše odpověď" oninput="toggleCheckButton(5)">
+                                <button id="btn5" onclick="checkAnswer(5)" disabled>Zkontrolovat</button>
+                                <span id="result5"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="actions-row">
+                        <button class="button-secondary answers-button" onclick="showAnswers()">Zobrazit správné odpovědi</button>
+                    </div>
+
+                </div>
+
+                <div class="card" style="margin-top: 16px;">
+                    <div class="card-title">Umění filtrování</div>
+                    <div class="filters">
+                        <div class="filters-group">
+                            <label for="nameFilter">Jméno</label>
+                            <input type="text" id="nameFilter" placeholder="Zadejte jméno">
+                        </div>
+                        <div class="filters-group">
+                            <label for="styleFilter">Styl</label>
+                            <select id="styleFilter">
+                                <option value="">Všechny styly</option>
+                            </select>
+                        </div>
+                        <div class="filters-group">
+                            <label for="placeFilter">Místo</label>
+                            <select id="placeFilter">
+                                <option value="">Všechna místa</option>
+                            </select>
+                        </div>
+                        <div class="filters-group">
+                            <label for="birthYear">Rok narození</label>
+                            <input type="number" id="birthYear" placeholder="Rok">
+                        </div>
+                        <div class="filters-actions">
+                            <button onclick="applyFilters()">Filtrovat</button>
+                            <button class="button-secondary" onclick="resetFilters()">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="table-wrapper">
+                    <table id="artistsTable">
+                        <thead>
+                            <tr>
+                                <th>Jméno</th>
+                                <th>Styly</th>
+                                <th>Rok narození</th>
+                                <th>Rok úmrtí</th>
+                                <th>Místa</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script>
+const umelciDB = [
+  { jmeno: "Leonardo da Vinci", styly: ["renesance"], rokNarozeni: 1452, rokUmrti: 1519, mista: ["Itálie", "Francie"] },
+  { jmeno: "Caravaggio (Michelangelo Merisi)", styly: ["baroko"], rokNarozeni: 1571, rokUmrti: 1610, mista: ["Itálie", "Malta"] },
+  { jmeno: "Francisco Goya", styly: ["romantismus"], rokNarozeni: 1746, rokUmrti: 1828, mista: ["Španělsko", "Francie"] },
+  { jmeno: "Claude Monet", styly: ["impresionismus"], rokNarozeni: 1840, rokUmrti: 1926, mista: ["Francie"] },
+  { jmeno: "Vincent van Gogh", styly: ["postimpresionismus"], rokNarozeni: 1853, rokUmrti: 1890, mista: ["Nizozemsko", "Belgie", "Francie"] },
+  { jmeno: "Gustav Klimt", styly: ["secese"], rokNarozeni: 1862, rokUmrti: 1918, mista: ["Rakousko"] },
+  { jmeno: "Edvard Munch", styly: ["expresionismus", "symbolismus"], rokNarozeni: 1863, rokUmrti: 1944, mista: ["Norsko", "Německo"] },
+  { jmeno: "Wassily Kandinsky", styly: ["abstrakce"], rokNarozeni: 1866, rokUmrti: 1944, mista: ["Rusko", "Německo", "Francie"] },
+  { jmeno: "Pablo Picasso", styly: ["kubismus", "moderní umění"], rokNarozeni: 1881, rokUmrti: 1973, mista: ["Španělsko", "Francie"] },
+  { jmeno: "René Magritte", styly: ["surrealismus"], rokNarozeni: 1898, rokUmrti: 1967, mista: ["Belgie"] },
+  { jmeno: "Frida Kahlo", styly: ["moderní umění", "surrealismus"], rokNarozeni: 1907, rokUmrti: 1954, mista: ["Mexiko"] },
+  { jmeno: "Andy Warhol", styly: ["popart"], rokNarozeni: 1928, rokUmrti: 1989, mista: ["USA"] },
+  { jmeno: "Michelangelo Buonarroti", styly: ["renesance"], rokNarozeni: 1475, rokUmrti: 1564, mista: ["Itálie"] },
+  { jmeno: "Peter Paul Rubens", styly: ["baroko"], rokNarozeni: 1577, rokUmrti: 1640, mista: ["Belgie"] },
+  { jmeno: "Eugène Delacroix", styly: ["romantismus"], rokNarozeni: 1798, rokUmrti: 1863, mista: ["Francie"] },
+  { jmeno: "Edgar Degas", styly: ["impresionismus"], rokNarozeni: 1834, rokUmrti: 1917, mista: ["Francie"] },
+  { jmeno: "Paul Cézanne", styly: ["postimpresionismus"], rokNarozeni: 1839, rokUmrti: 1906, mista: ["Francie"] },
+  { jmeno: "Alfons Mucha", styly: ["secese"], rokNarozeni: 1860, rokUmrti: 1939, mista: ["Česko", "Francie"] },
+  { jmeno: "Egon Schiele", styly: ["expresionismus", "secese", "moderna"], rokNarozeni: 1890, rokUmrti: 1918, mista: ["Rakousko"] },
+  { jmeno: "Piet Mondrian", styly: ["abstrakce", "neoplasticismus"], rokNarozeni: 1872, rokUmrti: 1944, mista: ["Nizozemsko", "Francie", "USA"] },
+  { jmeno: "Georges Braque", styly: ["kubismus"], rokNarozeni: 1882, rokUmrti: 1963, mista: ["Francie"] },
+  { jmeno: "Salvador Dalí", styly: ["surrealismus"], rokNarozeni: 1904, rokUmrti: 1989, mista: ["Španělsko", "Francie"] },
+  { jmeno: "Raffael Santi", styly: ["renesance"], rokNarozeni: 1483, rokUmrti: 1520, mista: ["Itálie"] },
+  { jmeno: "Diego Velázquez", styly: ["baroko"], rokNarozeni: 1599, rokUmrti: 1660, mista: ["Španělsko"] },
+  { jmeno: "Pierre-Auguste Renoir", styly: ["impresionismus"], rokNarozeni: 1841, rokUmrti: 1919, mista: ["Francie"] },
+  { jmeno: "Paul Gauguin", styly: ["postimpresionismus"], rokNarozeni: 1848, rokUmrti: 1903, mista: ["Francie"] },
+  { jmeno: "Jackson Pollock", styly: ["expresionismus"], rokNarozeni: 1912, rokUmrti: 1956, mista: ["USA"] },
+  { jmeno: "Sandro Botticelli", styly: ["renesance"], rokNarozeni: 1445, rokUmrti: 1510, mista: ["Itálie"] },
+  { jmeno: "Rembrandt van Rijn", styly: ["baroko"], rokNarozeni: 1606, rokUmrti: 1669, mista: ["Nizozemsko"] },
+  { jmeno: "Albrecht Dürer", styly: ["renesance"], rokNarozeni: 1471, rokUmrti: 1528, mista: ["Německo"] },
+  { jmeno: "Johannes Vermeer", styly: ["baroko"], rokNarozeni: 1632, rokUmrti: 1675, mista: ["Nizozemsko"] },
+  { jmeno: "Mark Rothko", styly: ["abstraktní expresionismus"], rokNarozeni: 1903, rokUmrti: 1970, mista: ["USA"] },
+  { jmeno: "Jean-Honoré Fragonard", styly: ["rokoko"], rokNarozeni: 1732, rokUmrti: 1806, mista: ["Francie"] },
+  { jmeno: "El Greco (Doménikos Theotokópoulos)", styly: ["manýrismus"], rokNarozeni: 1541, rokUmrti: 1614, mista: ["Řecko", "Itálie", "Španělsko"] },
+  { jmeno: "Mary Cassatt", styly: ["impresionismus"], rokNarozeni: 1844, rokUmrti: 1926, mista: ["USA", "Francie"] },
+  { jmeno: "Umberto Boccioni", styly: ["futurismus"], rokNarozeni: 1882, rokUmrti: 1916, mista: ["Itálie"] },
+  { jmeno: "Hieronymus Bosch", styly: ["severní renesance"], rokNarozeni: 1450, rokUmrti: 1516, mista: ["Nizozemsko"] },
+  { jmeno: "Roy Lichtenstein", styly: ["pop-art"], rokNarozeni: 1923, rokUmrti: 1997, mista: ["USA"] },
+  { jmeno: "Caspar David Friedrich", styly: ["romantismus"], rokNarozeni: 1774, rokUmrti: 1840, mista: ["Německo"] },
+  { jmeno: "Koloman Moser", styly: ["secese", "vídeňská moderna"], rokNarozeni: 1868, rokUmrti: 1918, mista: ["Rakousko"] },
+  { jmeno: "Pieter Bruegel starší", styly: ["renesance (severní)"], rokNarozeni: 1525, rokUmrti: 1569, mista: ["Belgie"] },
+  { jmeno: "Max Ernst", styly: ["surrealismus", "dadaismus"], rokNarozeni: 1891, rokUmrti: 1976, mista: ["Německo", "Francie", "USA"] },
+  { jmeno: "J. M. W. Turner", styly: ["romantismus"], rokNarozeni: 1775, rokUmrti: 1851, mista: ["Spojené království"] },
+  { jmeno: "Henri de Toulouse-Lautrec", styly: ["postimpresionismus"], rokNarozeni: 1864, rokUmrti: 1901, mista: ["Francie"] },
+  { jmeno: "Artemisia Gentileschi", styly: ["baroko"], rokNarozeni: 1593, rokUmrti: 1656, mista: ["Itálie"] },
+  { jmeno: "Jacques-Louis David", styly: ["klasicismus"], rokNarozeni: 1748, rokUmrti: 1825, mista: ["Francie", "Belgie"] },
+  { jmeno: "Kazimir Malevič", styly: ["suprematismus", "abstrakce"], rokNarozeni: 1879, rokUmrti: 1935, mista: ["Rusko"] },
+  { jmeno: "Willem de Kooning", styly: ["abstraktní expresionismus"], rokNarozeni: 1904, rokUmrti: 1997, mista: ["Nizozemsko", "USA"] },
+  { jmeno: "Joan Miró", styly: ["surrealismus"], rokNarozeni: 1893, rokUmrti: 1983, mista: ["Španělsko", "Francie"] },
+  { jmeno: "Titian (Tiziano Vecellio)", styly: ["renesance"], rokNarozeni: 1488, rokUmrti: 1576, mista: ["Itálie"] },
+  { jmeno: "Aubrey Beardsley", styly: ["secese"], rokNarozeni: 1872, rokUmrti: 1898, mista: ["Spojené království"] },
+  { jmeno: "Nicolas Poussin", styly: ["baroko", "klasicismus"], rokNarozeni: 1594, rokUmrti: 1665, mista: ["Francie", "Itálie"] },
+  { jmeno: "Odilon Redon", styly: ["symbolismus"], rokNarozeni: 1840, rokUmrti: 1916, mista: ["Francie"] },
+  { jmeno: "Marcel Duchamp", styly: ["dadaismus", "konceptuální umění"], rokNarozeni: 1887, rokUmrti: 1968, mista: ["Francie", "USA"] },
+  { jmeno: "Camille Pissarro", styly: ["impresionismus"], rokNarozeni: 1830, rokUmrti: 1903, mista: ["Francie"] },
+  { jmeno: "Georges Seurat", styly: ["postimpresionismus", "pointilismus"], rokNarozeni: 1859, rokUmrti: 1891, mista: ["Francie"] },
+  { jmeno: "Henri Matisse", styly: ["fauvismus", "moderní umění"], rokNarozeni: 1869, rokUmrti: 1954, mista: ["Francie"] },
+  { jmeno: "Georgia O'Keeffe", styly: ["moderní umění"], rokNarozeni: 1887, rokUmrti: 1986, mista: ["USA"] },
+  { jmeno: "Piet Mondrian", styly: ["abstrakce", "neoplasticismus"], rokNarozeni: 1872, rokUmrti: 1944, mista: ["Nizozemsko", "Francie", "USA"] },
+  { jmeno: "Jean-Michel Basquiat", styly: ["neoexpresionismus"], rokNarozeni: 1960, rokUmrti: 1988, mista: ["USA"] }
+];
+
+// Funkce pro načtení dat do tabulky
+function loadTable(data) {
+    const tableBody = document.getElementById('tableBody');
+    tableBody.innerHTML = '';
+    data.forEach(artist => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${artist.jmeno}</td>
+            <td>${artist.styly.join(', ')}</td>
+            <td>${artist.rokNarozeni}</td>
+            <td>${artist.rokUmrti}</td>
+            <td>${artist.mista.join(', ')}</td>
+        `;
+        tableBody.appendChild(row);
+    });
+}
+
+// Načtení možností pro filtry
+function loadFilters() {
+    const styles = new Set();
+    const places = new Set();
+    umelciDB.forEach(artist => {
+        artist.styly.forEach(style => styles.add(style));
+        artist.mista.forEach(place => places.add(place));
+    });
+    
+    const styleSelect = document.getElementById('styleFilter');
+    Array.from(styles).sort().forEach(style => {
+        const option = document.createElement('option');
+        option.value = style;
+        option.textContent = style;
+        styleSelect.appendChild(option);
+    });
+    
+    const placeSelect = document.getElementById('placeFilter');
+    Array.from(places).sort().forEach(place => {
+        const option = document.createElement('option');
+        option.value = place;
+        option.textContent = place;
+        placeSelect.appendChild(option);
+    });
+}
+
+// Aplikace filtrů
+function applyFilters() {
+    const nameFilter = document.getElementById('nameFilter').value.toLowerCase();
+    const styleFilter = document.getElementById('styleFilter').value;
+    const placeFilter = document.getElementById('placeFilter').value;
+    const birthYear = parseInt(document.getElementById('birthYear').value) || null;
+    
+    const filtered = umelciDB.filter(artist => {
+        const matchesName = artist.jmeno.toLowerCase().includes(nameFilter);
+        const matchesStyle = !styleFilter || artist.styly.includes(styleFilter);
+        const matchesPlace = !placeFilter || artist.mista.includes(placeFilter);
+        const matchesBirth = !birthYear || artist.rokNarozeni === birthYear;
+        return matchesName && matchesStyle && matchesPlace && matchesBirth;
+    });
+    
+    loadTable(filtered);
+}
+
+// Reset filtrů
+function resetFilters() {
+    document.getElementById('nameFilter').value = '';
+    document.getElementById('styleFilter').value = '';
+    document.getElementById('placeFilter').value = '';
+    document.getElementById('birthYear').value = '';
+    loadTable(umelciDB);
+}
+
+const answers = {
+    1: 6,
+    2: 3,
+    3: 'baroko',
+    4: 2,
+    5: 2
+};
+
+// Povolení/zakázání tlačítka podle obsahu inputu
+function toggleCheckButton(question) {
+    const input = document.getElementById(`q${question}`);
+    const button = document.getElementById(`btn${question}`);
+    const rawValue = input.value.trim();
+    // Odstranit případnou závorku z předchozí kontroly
+    const userAnswerText = rawValue.split('(')[0].trim();
+    button.disabled = !userAnswerText;
+}
+
+// Kontrola odpovědí
+function checkAnswer(question, showCorrect = false) {
+    const input = document.getElementById(`q${question}`);
+    const result = document.getElementById(`result${question}`);
+    const correctAnswer = answers[question];
+
+    if (showCorrect) {
+        // Zobrazit správnou odpověď, ale zachovat žákovu odpověď (pokud existuje)
+        const rawValue = input.value.trim();
+        const userAnswerText = rawValue.split('(')[0].trim();
+        const correctAnswerText = question === 3 ? correctAnswer : correctAnswer.toString();
+        const base = userAnswerText || correctAnswerText;
+        input.value = `${base} (Správně: ${correctAnswerText})`;
+        return;
+    }
+
+    // Původní žákova odpověď (bez předchozí závorky)
+    const rawValue = input.value.trim();
+    const userAnswerText = rawValue.split('(')[0].trim();
+    if (!userAnswerText) {
+        result.textContent = '';
+        return;
+    }
+
+    const userAnswer = userAnswerText.toLowerCase();
+    let message = '';
+    let isCorrect = false;
+
+    if (question === 3) {
+        isCorrect = userAnswer === correctAnswer;
+    } else {
+        isCorrect = parseInt(userAnswer, 10) === correctAnswer;
+    }
+
+    if (isCorrect) {
+        message = `${userAnswerText} Správně!`;
+    } else {
+        message = `${userAnswerText} Špatně. (Správně je ${question === 3 ? correctAnswer : correctAnswer.toString()})`;
+    }
+
+    input.value = message;
+    result.textContent = '';
+}
+
+// Zobrazení správných odpovědí
+function showAnswers() {
+    // Zobrazit správné odpovědi a rovnou je vložit do polí
+    for (let i = 1; i <= 5; i++) {
+        checkAnswer(i, true);
+    }
+}
+
+// Inicializace
+window.onload = function() {
+    loadFilters();
+    loadTable(umelciDB);
+};
+    </script>
+</body>
+</html>
