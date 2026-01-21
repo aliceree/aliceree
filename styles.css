@@ -449,6 +449,12 @@ a {
     margin-left: 0;
   }
 
+  /* schovej ruční poznámku a skills, když se layout skládá na jeden sloupec */
+  .hero__note,
+  .hero__skills {
+    display: none;
+  }
+
   .nav {
     gap: 18px;
     flex-wrap: wrap;

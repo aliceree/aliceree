@@ -1,12 +1,79 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="cs">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Alice Ree" />
+    <meta
+      name="description"
+      content="Alice Ree — Computer Science Teaching based on Constructivist Learning Theory."
+    />
     <title>Alice Ree</title>
+
+    <!-- Inter (minimalist sans-serif) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="./script.js"></script>
   </head>
   <body>
-    <!-- intentionally empty home page -->
+    <a class="skip-link" href="#main">Přeskočit na obsah</a>
+
+    <header class="site-header">
+      <div class="site-header__inner">
+        <div class="brand" aria-label="Brand">ALICE <span class="brand__highlight">REE</span></div>
+
+        <nav class="nav" aria-label="Hlavní navigace">
+          <a class="nav__link nav__link--highlight" href="#" aria-disabled="true">About</a>
+          <a class="nav__link nav__link--highlight" href="#" aria-disabled="true">Projects</a>
+          <a class="nav__link nav__link--highlight" href="#" aria-disabled="true">Resources</a>
+          <a class="nav__link nav__link--highlight" href="./contacts.html">Contacts</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="page">
+      <section class="hero" aria-label="Úvod">
+        <div class="hero__text">
+          <p class="hero__kicker">Computer Science Teaching</p>
+          <h1 class="hero__title">
+            Computer Science teaching based on Constructivist Learning Theory.
+          </h1>
+        </div>
+
+        <div class="hero__media" aria-label="Fotografie Alice Ree">
+          <img
+            class="hero__image"
+            src="./AliceRee.png"
+            alt="Alice Ree"
+            loading="eager"
+            decoding="async"
+          />
+          <div class="hero__skills" aria-hidden="true">
+            <img class="hero__skills-image" src="./skills.png" alt="Skills" />
+            <img class="hero__skills-arrow hero__skills-arrow--name" src="./namearrow.jpg" alt="" />
+            <img class="hero__skills-arrow hero__skills-arrow--face" src="./facearrow.jpg" alt="" />
+          </div>
+          <div class="hero__note" aria-hidden="true">
+            <img class="hero__note-arrow hero__note-arrow--name" src="./namearrow.jpg" alt="" />
+            <span class="hero__note-text-wrap">
+              <img class="hero__note-text" src="./thatsme.png" alt="" />
+            </span>
+            <img class="hero__note-arrow hero__note-arrow--face" src="./facearrow.jpg" alt="" />
+          </div>
+          <span class="sr-only">Ručně psaná poznámka „that's me“ se dvěma šipkami.</span>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" aria-label="Patička">
+      <div class="site-footer__inner">
+        <small class="muted">© <span id="year"></span> Alice Ree</small>
+      </div>
+    </footer>
   </body>
 </html>
