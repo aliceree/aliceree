@@ -1,159 +1,135 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="cs">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Alice Ree Projects" />
     <title>Alice Ree</title>
 
-    <!-- Handwritten font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
 
+    <link rel="stylesheet" href="../styles.css" />
+
     <style>
-      :root {
-        --bg: #ffffff;
-        --ink: #111111;
-        --highlight: rgba(255, 184, 210, 0.85); /* pastel pink */
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        margin: 0;
-        min-height: 100vh;
-        background: var(--bg);
-        color: var(--ink);
+      /* rozvržení pro stránku projektů, aby odpovídalo Contacts */
+      .page--projects {
         display: flex;
-        align-items: center;
         justify-content: center;
-        padding: 64px 24px;
-        font-family: "Patrick Hand", system-ui, -apple-system, BlinkMacSystemFont,
-          "Segoe UI", sans-serif;
+        padding: calc(var(--pady) + 100px) var(--padx) var(--pady);
       }
 
-      .wrap {
-        width: 100%;
-        max-width: 900px;
-      }
-
-      .projects {
+      .projects-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
         display: flex;
         flex-direction: column;
         gap: 22px;
-        align-items: flex-start;
+        align-items: center;
+        text-align: center;
       }
 
-      .project-link {
+      .project-chip {
         position: relative;
         display: inline-block;
-        font-size: clamp(22px, 3.5vw, 43px);
-        font-weight: 700;
-        letter-spacing: 0.3px;
-        line-height: 1.05;
-        text-decoration: none;
-        color: var(--ink);
-        padding: 0 0.08em;
-        outline: none;
+        color: var(--text);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        font-size: 13px;
+        font-weight: 400;
+        padding: 6px 10px;
+        z-index: 0;
       }
 
-      /* Marker-style highlight */
-      .project-link::before {
+      .project-chip::after {
         content: "";
         position: absolute;
-        left: -0.12em;
-        right: -0.12em;
-        top: 0.08em;
-        bottom: 0.08em;
-        height: auto;
-        background: var(--highlight);
-        background-image: url("./highlither.png");
+        left: 50%;
+        width: max(calc(100% + 12px), 140px);
+        top: 50%;
+        height: 150%;
+        background-image: url("../highlither.png");
         background-repeat: no-repeat;
         background-position: center;
-        background-size: 120% 110%;
-        border-radius: 0.18em;
-        transform: rotate(-2deg) scaleX(0.92);
-        transform-origin: left center;
+        background-size: auto 100%;
         opacity: 0;
+        transform: translate(-50%, -48%) scale(1.2);
         z-index: -1;
-        transition: opacity 160ms ease, transform 180ms ease;
-
-        /* Make the edges feel a bit "hand-drawn" */
-        clip-path: polygon(
-          /* top edge (mostly straight with slight skew) */
-          2% 14%,
-          18% 13%,
-          36% 14%,
-          54% 13%,
-          72% 14%,
-          92% 13%,
-          98% 14%,
-
-          /* right edge (irregular) */
-          97% 24%,
-          99% 36%,
-          96% 48%,
-          100% 60%,
-          97% 72%,
-          99% 84%,
-          98% 92%,
-
-          /* bottom edge (mostly straight with slight skew) */
-          90% 93%,
-          72% 92%,
-          54% 93%,
-          36% 92%,
-          18% 93%,
-          2% 92%,
-
-          /* left edge (irregular) */
-          1% 84%,
-          3% 72%,
-          0% 60%,
-          4% 48%,
-          1% 36%,
-          3% 24%
-        );
-        filter: blur(0.15px);
-      }
-
-      .project-link:hover::before,
-      .project-link:focus-visible::before {
-        opacity: 1;
-        transform: rotate(-2deg) scaleX(1);
-      }
-
-      /* Subtle "pen" wiggle on hover */
-      .project-link:hover {
-        transform: rotate(-0.35deg);
+        pointer-events: none;
+        transition: opacity 180ms ease, transform 200ms ease;
       }
 
       .project-link {
-        transition: transform 140ms ease;
+        color: var(--text);
+        font-weight: 400;
       }
 
-      @media (prefers-reduced-motion: reduce) {
-        .project-link,
-        .project-link::before {
-          transition: none;
-        }
+      .project-chip--link:hover::after,
+      .project-chip--link:focus-visible::after {
+        opacity: 1;
+        transform: translate(-50%, -48%) scale(1.2);
+      }
+
+      .project-link:hover {
+        color: var(--text);
+      }
+
+      .projects-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .project-chip--link {
+        text-decoration: none;
+        color: var(--text);
       }
     </style>
   </head>
 
   <body>
-    <main class="wrap">
-      <nav class="projects" aria-label="Projects">
-        <a class="project-link" href="/projects/datart">Data of Art</a>
-        <a class="project-link" href="/projects/timer">Timer</a>
-        <a class="project-link" href="/projects/teamgenerator">Team Generator</a>
-      </nav>
+    <a class="skip-link" href="#main">Přeskočit na obsah</a>
+
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="brand brand--hover" href="../index.html" aria-label="Domů">
+          ALICE <span class="brand__highlight">REE</span>
+        </a>
+
+        <nav class="nav" aria-label="Hlavní navigace">
+          <a class="nav__link nav__link--highlight" href="#" aria-disabled="true">About</a>
+          <a
+            class="nav__link nav__link--highlight nav__link--static"
+            href="./index.html"
+            aria-current="page"
+          >
+            Projects
+          </a>
+          <a class="nav__link nav__link--highlight" href="#" aria-disabled="true">Resources</a>
+          <a class="nav__link nav__link--highlight" href="../contacts.html">Contacts</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="page page--projects">
+      <section aria-label="Projects">
+        <ul class="projects-list" role="list">
+          <li class="projects-item">
+            <a class="project-chip project-chip--link" href="/projects/datart">Data of Art</a>
+          </li>
+          <li class="projects-item">
+            <a class="project-chip project-chip--link" href="/projects/timer">Timer</a>
+          </li>
+          <li class="projects-item">
+            <a class="project-chip project-chip--link" href="/projects/teamgenerator">Team Generator</a>
+          </li>
+        </ul>
+      </section>
     </main>
   </body>
 </html>
