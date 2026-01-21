@@ -290,7 +290,7 @@ a {
   width: clamp(63px, 11.6vw, 116px);
   z-index: 2;
   pointer-events: none;
-  transform: translate(5px, -100px) rotate(5deg);
+  transform: translate(5px, -100px) rotate(-2deg);
   isolation: isolate;
 }
 
@@ -379,8 +379,8 @@ a {
 .hero__note-text-wrap {
   position: relative;
   display: inline-block;
-  width: clamp(70px, 9vw, 110px);
-  transform: translate(-570px, -120px) rotate(5deg); /* pozice + rotace thatsme.png */
+  width: clamp(92px, 11.9vw, 145px);
+  transform: translate(-570px, -120px) rotate(7deg); /* pozice + rotace thatsme.png */
   z-index: 2;
   isolation: isolate;
 }
@@ -394,7 +394,7 @@ a {
   pointer-events: none;
   mix-blend-mode: multiply;
   opacity: 0.9;
-  transform: translateX(34px);
+  transform: translateX(50px);
 }
 
 .hero__note-text {
