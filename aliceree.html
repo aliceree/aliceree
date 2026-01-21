@@ -25,7 +25,7 @@
 
     <header class="site-header">
       <div class="site-header__inner">
-        <div class="brand" aria-label="Brand">ALICE REE</div>
+        <div class="brand" aria-label="Brand">ALICE <span class="brand__highlight">REE</span></div>
 
         <nav class="nav" aria-label="Hlavní navigace">
           <a class="nav__link nav__link--highlight" href="#" aria-disabled="true">About</a>
@@ -53,6 +53,12 @@
             loading="eager"
             decoding="async"
           />
+          <div class="hero__note" aria-hidden="true">
+            <img class="hero__note-arrow" src="./namearrow.jpg" alt="" />
+            <img class="hero__note-text" src="./thatsme.png" alt="" />
+            <img class="hero__note-arrow hero__note-arrow--face" src="./facearrow.jpg" alt="" />
+          </div>
+          <span class="sr-only">Ručně psaná poznámka „that's me“ se dvěma šipkami.</span>
         </div>
       </section>
     </main>
