@@ -17,7 +17,9 @@
 &lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
 &lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;none&#x27;; script-src &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; &#x27;wasm-unsafe-eval&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src &#x27;unsafe-inline&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src &#x27;none&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;&quot;&gt;
 &lt;title&gt;Measuroom Home Large Top Buttons&lt;/title&gt;
-&lt;style&gt;:root {
+&lt;style&gt;@import url(&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;display=swap&quot;);
+
+:root {
   color-scheme: light dark;
   background-color: var(--background) !important;
 
@@ -55,7 +57,7 @@
   --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
 
   /* Internal implementation variables; not part of the agent contract. */
-  --font-sans: -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;
+  --font-sans: &quot;Inter&quot;, -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;
   --font-mono:
     ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;,
     monospace;
@@ -822,7 +824,8 @@ html&gt;body{padding:0}&lt;/style&gt;
       --glass: color-mix(in srgb, var(--card) 42%, transparent);
       --glass-strong: color-mix(in srgb, var(--card) 64%, transparent);
       --glass-border: color-mix(in srgb, var(--card-foreground) 22%, transparent);
-      --screen-text: var(--card-foreground);
+      --screen-text: light-dark(var(--primary-foreground), var(--foreground));
+      --active-tool-text: light-dark(var(--foreground), var(--primary-foreground));
       display: grid;
       place-items: center;
       width: 100%;
@@ -1144,7 +1147,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     }
 
     #measuroom-home .is-locked {
-      color: color-mix(in srgb, var(--screen-text) 58%, transparent);
+      color: var(--screen-text);
       background: linear-gradient(145deg, color-mix(in srgb, var(--muted) 48%, transparent), color-mix(in srgb, var(--muted) 30%, transparent));
     }
 
@@ -1155,7 +1158,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     #measuroom-home .active-tool {
       background: rgba(255, 255, 255, .72);
       border-color: rgba(255, 255, 255, .82);
-      color: rgba(12, 18, 26, .92);
+      color: var(--active-tool-text);
       box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, .96),
         inset 0 -1px 0 rgba(12, 18, 26, .1),
