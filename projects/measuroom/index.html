@@ -17,7 +17,7 @@
 &lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
 &lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;none&#x27;; script-src &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; &#x27;wasm-unsafe-eval&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src &#x27;unsafe-inline&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src &#x27;none&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;&quot;&gt;
 &lt;title&gt;Measuroom Home Large Top Buttons&lt;/title&gt;
-&lt;style&gt;@import url(&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;display=swap&quot;);
+&lt;style&gt;@import url(&quot;https://fonts.googleapis.com/css2?family=Manrope:wght@300;400&amp;display=swap&quot;);
 
 :root {
   color-scheme: light dark;
@@ -57,7 +57,7 @@
   --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
 
   /* Internal implementation variables; not part of the agent contract. */
-  --font-sans: &quot;Inter&quot;, -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;
+  --font-sans: &quot;Manrope&quot;, -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;
   --font-mono:
     ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;,
     monospace;
@@ -67,7 +67,7 @@
   --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
   --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
   --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
-  --font-weight-normal: 400;
+  --font-weight-normal: 300;
   --font-weight-medium: 400;
   --line-height-normal: calc(var(--font-size-normal) * 1.5);
   --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
@@ -773,17 +773,17 @@ html&gt;body{padding:0}&lt;/style&gt;
       &lt;div class=&quot;tool-stack&quot; aria-label=&quot;Tools&quot;&gt;
         &lt;button class=&quot;tool glass&quot; type=&quot;button&quot; data-tool=&quot;Measure&quot; aria-label=&quot;Measure&quot;&gt;
           &lt;span class=&quot;tool-icon&quot;&gt;&lt;i data-lucide=&quot;ruler&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;
-          &lt;span class=&quot;tool-label&quot;&gt;Measure&lt;/span&gt;
+          &lt;span class=&quot;tool-label&quot; data-i18n=&quot;measure&quot;&gt;Measure&lt;/span&gt;
           &lt;span class=&quot;chevron&quot;&gt;&lt;i data-lucide=&quot;chevron-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;
         &lt;/button&gt;
         &lt;button class=&quot;tool glass&quot; type=&quot;button&quot; data-tool=&quot;Find position&quot; aria-label=&quot;Find position&quot;&gt;
           &lt;span class=&quot;tool-icon&quot;&gt;&lt;i data-lucide=&quot;locate-fixed&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;
-          &lt;span class=&quot;tool-label&quot;&gt;Find position&lt;/span&gt;
+          &lt;span class=&quot;tool-label&quot; data-i18n=&quot;findPosition&quot;&gt;Find position&lt;/span&gt;
           &lt;span class=&quot;chevron&quot;&gt;&lt;i data-lucide=&quot;chevron-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;
         &lt;/button&gt;
         &lt;button class=&quot;tool glass&quot; type=&quot;button&quot; data-tool=&quot;Calculate&quot; aria-label=&quot;Calculate&quot;&gt;
           &lt;span class=&quot;tool-icon&quot;&gt;&lt;i data-lucide=&quot;square-sigma&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;
-          &lt;span class=&quot;tool-label&quot;&gt;Calculate&lt;/span&gt;
+          &lt;span class=&quot;tool-label&quot; data-i18n=&quot;calculate&quot;&gt;Calculate&lt;/span&gt;
           &lt;span class=&quot;chevron&quot;&gt;&lt;i data-lucide=&quot;chevron-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;
         &lt;/button&gt;
       &lt;/div&gt;
@@ -811,7 +811,7 @@ html&gt;body{padding:0}&lt;/style&gt;
               &lt;/g&gt;
             &lt;/svg&gt;
           &lt;/span&gt;
-          &lt;span class=&quot;tool-label&quot;&gt;Room&lt;/span&gt;
+          &lt;span class=&quot;tool-label&quot; data-i18n=&quot;room&quot;&gt;Room&lt;/span&gt;
           &lt;span class=&quot;chevron&quot;&gt;&lt;i data-lucide=&quot;chevron-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;
         &lt;/button&gt;
         &lt;button class=&quot;tool glass&quot; type=&quot;button&quot; data-tool=&quot;Rooms&quot; aria-label=&quot;Rooms&quot;&gt;
@@ -823,10 +823,10 @@ html&gt;body{padding:0}&lt;/style&gt;
               &lt;path d=&quot;M13 24v-8M13 16a8 8 0 0 1 8 8&quot;&gt;&lt;/path&gt;
             &lt;/svg&gt;
           &lt;/span&gt;
-          &lt;span class=&quot;tool-label&quot;&gt;Rooms&lt;/span&gt;
+          &lt;span class=&quot;tool-label&quot; data-i18n=&quot;rooms&quot;&gt;Rooms&lt;/span&gt;
           &lt;span class=&quot;chevron&quot;&gt;&lt;i data-lucide=&quot;chevron-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;
         &lt;/button&gt;
-        &lt;button class=&quot;tool glass&quot; type=&quot;button&quot; data-tool=&quot;2D Area&quot; aria-label=&quot;2D Area&quot;&gt;
+        &lt;button class=&quot;tool glass&quot; type=&quot;button&quot; data-tool=&quot;2D area&quot; aria-label=&quot;2D area&quot;&gt;
           &lt;span class=&quot;tool-icon&quot;&gt;
             &lt;svg viewBox=&quot;0 0 48 48&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;
               &lt;rect x=&quot;4&quot; y=&quot;9&quot; width=&quot;17&quot; height=&quot;30&quot; rx=&quot;1&quot;&gt;&lt;/rect&gt;
@@ -835,7 +835,7 @@ html&gt;body{padding:0}&lt;/style&gt;
               &lt;path d=&quot;M27 17.5h17M35.5 9v17&quot;&gt;&lt;/path&gt;
             &lt;/svg&gt;
           &lt;/span&gt;
-          &lt;span class=&quot;tool-label&quot;&gt;2D Area&lt;/span&gt;
+          &lt;span class=&quot;tool-label&quot; data-i18n=&quot;area2d&quot;&gt;2D area&lt;/span&gt;
           &lt;span class=&quot;chevron&quot;&gt;&lt;i data-lucide=&quot;chevron-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;
         &lt;/button&gt;
       &lt;/div&gt;
@@ -862,7 +862,7 @@ html&gt;body{padding:0}&lt;/style&gt;
               &lt;path d=&quot;M24 18.5v2.5M24 27v2.5M18.5 24H21M27 24h2.5&quot;&gt;&lt;/path&gt;
             &lt;/svg&gt;
           &lt;/span&gt;
-          &lt;span class=&quot;tool-label&quot;&gt;Center&lt;/span&gt;
+          &lt;span class=&quot;tool-label&quot; data-i18n=&quot;center&quot;&gt;Center&lt;/span&gt;
           &lt;span class=&quot;chevron&quot;&gt;&lt;i data-lucide=&quot;chevron-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;
         &lt;/button&gt;
         &lt;button class=&quot;tool glass&quot; type=&quot;button&quot; data-tool=&quot;Midposition&quot; aria-label=&quot;Midposition&quot;&gt;
@@ -872,7 +872,7 @@ html&gt;body{padding:0}&lt;/style&gt;
               &lt;path d=&quot;M24 19v10&quot; stroke-dasharray=&quot;2 2&quot;&gt;&lt;/path&gt;
             &lt;/svg&gt;
           &lt;/span&gt;
-          &lt;span class=&quot;tool-label&quot;&gt;Midposition&lt;/span&gt;
+          &lt;span class=&quot;tool-label&quot; data-i18n=&quot;midposition&quot;&gt;Midposition&lt;/span&gt;
           &lt;span class=&quot;chevron&quot;&gt;&lt;i data-lucide=&quot;chevron-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;
         &lt;/button&gt;
       &lt;/div&gt;
@@ -898,7 +898,7 @@ html&gt;body{padding:0}&lt;/style&gt;
               &lt;path d=&quot;M33 20h4v7H25v4M25 31v6&quot;&gt;&lt;/path&gt;
             &lt;/svg&gt;
           &lt;/span&gt;
-          &lt;span class=&quot;tool-label&quot;&gt;Estimate paint&lt;/span&gt;
+          &lt;span class=&quot;tool-label&quot; data-i18n=&quot;estimatePaint&quot;&gt;Estimate paint&lt;/span&gt;
           &lt;span class=&quot;chevron&quot;&gt;&lt;i data-lucide=&quot;chevron-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;
         &lt;/button&gt;
         &lt;button class=&quot;tool glass&quot; type=&quot;button&quot; data-tool=&quot;Number of tiles&quot; aria-label=&quot;Number of tiles&quot;&gt;
@@ -911,7 +911,7 @@ html&gt;body{padding:0}&lt;/style&gt;
               &lt;/g&gt;
             &lt;/svg&gt;
           &lt;/span&gt;
-          &lt;span class=&quot;tool-label&quot;&gt;Number of tiles&lt;/span&gt;
+          &lt;span class=&quot;tool-label&quot; data-i18n=&quot;numberOfTiles&quot;&gt;Number of tiles&lt;/span&gt;
           &lt;span class=&quot;chevron&quot;&gt;&lt;i data-lucide=&quot;chevron-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;
         &lt;/button&gt;
       &lt;/div&gt;
@@ -928,36 +928,84 @@ html&gt;body{padding:0}&lt;/style&gt;
     &lt;/header&gt;
 
     &lt;main class=&quot;tile-size-area tiles-only&quot;&gt;
-      &lt;section class=&quot;tile-size-card glass&quot; aria-labelledby=&quot;tile-size-title&quot;&gt;
-        &lt;div class=&quot;tile-diagram&quot; aria-hidden=&quot;true&quot;&gt;
-          &lt;svg viewBox=&quot;0 0 120 86&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;
-            &lt;rect x=&quot;25&quot; y=&quot;13&quot; width=&quot;72&quot; height=&quot;52&quot; rx=&quot;3&quot;&gt;&lt;/rect&gt;
-            &lt;path d=&quot;M25 75h72M25 71v8M97 71v8M15 13v52M11 13h8M11 65h8&quot;&gt;&lt;/path&gt;
-            &lt;text x=&quot;61&quot; y=&quot;83&quot; text-anchor=&quot;middle&quot; fill=&quot;currentColor&quot; stroke=&quot;none&quot;&gt;a&lt;/text&gt;
-            &lt;text x=&quot;8&quot; y=&quot;42&quot; text-anchor=&quot;middle&quot; fill=&quot;currentColor&quot; stroke=&quot;none&quot;&gt;b&lt;/text&gt;
+      &lt;section class=&quot;tile-size-card&quot; aria-label=&quot;Tile size&quot;&gt;
+        &lt;div class=&quot;tile-diagram&quot;&gt;
+          &lt;svg viewBox=&quot;0 0 180 210&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;
+            &lt;rect x=&quot;37&quot; y=&quot;18&quot; width=&quot;92&quot; height=&quot;142&quot; rx=&quot;5&quot;&gt;&lt;/rect&gt;
+            &lt;path d=&quot;M37 181h92M37 175v12M129 175v12M150 18v142M144 18h12M144 160h12&quot;&gt;&lt;/path&gt;
           &lt;/svg&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;tile-size-copy&quot;&gt;
-          &lt;h2 id=&quot;tile-size-title&quot;&gt;Tile size&lt;/h2&gt;
-          &lt;p&gt;Enter the dimensions of one tile.&lt;/p&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;dimension-fields&quot;&gt;
-          &lt;label class=&quot;dimension-field&quot;&gt;
-            &lt;span&gt;Side A&lt;/span&gt;
+          &lt;label class=&quot;diagram-input side-a&quot;&gt;
             &lt;span class=&quot;number-input&quot;&gt;
-              &lt;input type=&quot;number&quot; inputmode=&quot;decimal&quot; min=&quot;0&quot; step=&quot;any&quot; placeholder=&quot;30&quot; aria-label=&quot;Tile side A in centimeters&quot;&gt;
-              &lt;span aria-hidden=&quot;true&quot;&gt;cm&lt;/span&gt;
+              &lt;input type=&quot;number&quot; inputmode=&quot;decimal&quot; enterkeyhint=&quot;go&quot; min=&quot;0&quot; step=&quot;any&quot; placeholder=&quot;a&quot; data-dimension=&quot;a&quot; aria-label=&quot;Tile side A in centimeters&quot;&gt;
+              &lt;span class=&quot;unit-suffix&quot; aria-hidden=&quot;true&quot;&gt;cm&lt;/span&gt;
             &lt;/span&gt;
           &lt;/label&gt;
-          &lt;label class=&quot;dimension-field&quot;&gt;
-            &lt;span&gt;Side B&lt;/span&gt;
+          &lt;label class=&quot;diagram-input side-b&quot;&gt;
             &lt;span class=&quot;number-input&quot;&gt;
-              &lt;input type=&quot;number&quot; inputmode=&quot;decimal&quot; min=&quot;0&quot; step=&quot;any&quot; placeholder=&quot;60&quot; aria-label=&quot;Tile side B in centimeters&quot;&gt;
-              &lt;span aria-hidden=&quot;true&quot;&gt;cm&lt;/span&gt;
+              &lt;input type=&quot;number&quot; inputmode=&quot;decimal&quot; enterkeyhint=&quot;next&quot; min=&quot;0&quot; step=&quot;any&quot; placeholder=&quot;b&quot; data-dimension=&quot;b&quot; aria-label=&quot;Tile side B in centimeters&quot;&gt;
+              &lt;span class=&quot;unit-suffix&quot; aria-hidden=&quot;true&quot;&gt;cm&lt;/span&gt;
             &lt;/span&gt;
           &lt;/label&gt;
         &lt;/div&gt;
       &lt;/section&gt;
+    &lt;/main&gt;
+
+    &lt;header class=&quot;topbar settings-only&quot;&gt;
+      &lt;button class=&quot;round-control glass&quot; type=&quot;button&quot; aria-label=&quot;Back to home&quot; data-action=&quot;back&quot;&gt;
+        &lt;i data-lucide=&quot;arrow-left&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+      &lt;/button&gt;
+      &lt;span aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+      &lt;span aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+    &lt;/header&gt;
+
+    &lt;main class=&quot;settings-area settings-only&quot;&gt;
+      &lt;div class=&quot;settings-stack&quot;&gt;
+        &lt;section class=&quot;settings-panel glass&quot;&gt;
+          &lt;div class=&quot;settings-choice&quot;&gt;
+            &lt;span class=&quot;settings-icon&quot;&gt;&lt;i data-lucide=&quot;languages&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+            &lt;div class=&quot;segmented-control&quot; aria-label=&quot;Language&quot;&gt;
+              &lt;button class=&quot;segment is-active&quot; type=&quot;button&quot; data-language=&quot;en&quot; aria-pressed=&quot;true&quot;&gt;English&lt;/button&gt;
+              &lt;button class=&quot;segment&quot; type=&quot;button&quot; data-language=&quot;cs&quot; aria-pressed=&quot;false&quot;&gt;Čeština&lt;/button&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;settings-divider&quot;&gt;&lt;/div&gt;
+          &lt;div class=&quot;settings-choice&quot;&gt;
+            &lt;span class=&quot;settings-icon&quot;&gt;&lt;i data-lucide=&quot;ruler&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+            &lt;div class=&quot;segmented-control&quot; aria-label=&quot;Units&quot;&gt;
+              &lt;button class=&quot;segment is-active&quot; type=&quot;button&quot; data-units=&quot;metric&quot; aria-pressed=&quot;true&quot;&gt;m/cm&lt;/button&gt;
+              &lt;button class=&quot;segment&quot; type=&quot;button&quot; data-units=&quot;imperial&quot; aria-pressed=&quot;false&quot;&gt;ft/in&lt;/button&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;section class=&quot;settings-panel settings-links glass&quot;&gt;
+          &lt;button class=&quot;settings-row&quot; type=&quot;button&quot; data-settings-item=&quot;help&quot;&gt;
+            &lt;span class=&quot;settings-icon&quot;&gt;&lt;i data-lucide=&quot;circle-help&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+            &lt;span data-i18n=&quot;help&quot;&gt;Help&lt;/span&gt;
+            &lt;i data-lucide=&quot;chevron-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+          &lt;/button&gt;
+          &lt;button class=&quot;settings-row&quot; type=&quot;button&quot; data-settings-item=&quot;report&quot;&gt;
+            &lt;span class=&quot;settings-icon&quot;&gt;&lt;i data-lucide=&quot;message-circle-warning&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+            &lt;span data-i18n=&quot;reportProblem&quot;&gt;Report a problem / Feedback&lt;/span&gt;
+            &lt;i data-lucide=&quot;chevron-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+          &lt;/button&gt;
+          &lt;button class=&quot;settings-row&quot; type=&quot;button&quot; data-settings-item=&quot;share&quot;&gt;
+            &lt;span class=&quot;settings-icon&quot;&gt;&lt;i data-lucide=&quot;share-2&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+            &lt;span data-i18n=&quot;share&quot;&gt;Share Measuroom&lt;/span&gt;
+            &lt;i data-lucide=&quot;chevron-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+          &lt;/button&gt;
+          &lt;button class=&quot;settings-row&quot; type=&quot;button&quot; data-settings-item=&quot;privacy&quot;&gt;
+            &lt;span class=&quot;settings-icon&quot;&gt;&lt;i data-lucide=&quot;shield-check&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+            &lt;span data-i18n=&quot;privacy&quot;&gt;Privacy policy&lt;/span&gt;
+            &lt;i data-lucide=&quot;chevron-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+          &lt;/button&gt;
+          &lt;div class=&quot;settings-row settings-version&quot;&gt;
+            &lt;span class=&quot;settings-icon&quot;&gt;&lt;i data-lucide=&quot;info&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+            &lt;span data-i18n=&quot;appVersion&quot;&gt;App version&lt;/span&gt;
+            &lt;span&gt;1.0.0&lt;/span&gt;
+          &lt;/div&gt;
+        &lt;/section&gt;
+      &lt;/div&gt;
     &lt;/main&gt;
 
     &lt;div class=&quot;feedback glass&quot; role=&quot;status&quot; aria-live=&quot;polite&quot;&gt;&lt;/div&gt;
@@ -1011,7 +1059,8 @@ html&gt;body{padding:0}&lt;/style&gt;
     #measuroom-home .measure-only,
     #measuroom-home .find-only,
     #measuroom-home .calculate-only,
-    #measuroom-home .tiles-only {
+    #measuroom-home .tiles-only,
+    #measuroom-home .settings-only {
       display: none;
     }
 
@@ -1019,17 +1068,21 @@ html&gt;body{padding:0}&lt;/style&gt;
     #measuroom-home.show-measure .home-only,
     #measuroom-home.show-find .camera-photo:not(.measure-photo),
     #measuroom-home.show-find .home-only,
-    #measuroom-home.show-calculate .camera-photo:not(.measure-photo),
+    #measuroom-home.show-calculate:not(.show-tiles) .camera-photo:not(.measure-photo),
     #measuroom-home.show-calculate .home-only,
+    #measuroom-home.show-settings .camera-photo:not(.measure-photo),
+    #measuroom-home.show-settings .home-only,
     #measuroom-home.show-tiles .camera-photo:not(.tiles-photo),
     #measuroom-home.show-tiles .home-only,
-    #measuroom-home.show-tiles .calculate-only {
-      display: none;
+    #measuroom-home.show-tiles header.calculate-only,
+    #measuroom-home.show-tiles main.calculate-only {
+      display: none !important;
     }
 
     #measuroom-home.show-measure .measure-photo,
     #measuroom-home.show-find .measure-photo,
-    #measuroom-home.show-calculate .measure-photo {
+    #measuroom-home.show-calculate .measure-photo,
+    #measuroom-home.show-settings .measure-photo {
       display: block;
     }
 
@@ -1061,12 +1114,31 @@ html&gt;body{padding:0}&lt;/style&gt;
       display: flex;
     }
 
+    #measuroom-home.show-settings header.settings-only {
+      display: grid;
+    }
+
+    #measuroom-home.show-settings main.settings-only {
+      display: block;
+    }
+
     #measuroom-home.show-tiles header.tiles-only {
       display: grid;
     }
 
     #measuroom-home.show-tiles main.tiles-only {
       display: flex;
+    }
+
+    #measuroom-home.show-tiles .camera-photo {
+      display: none !important;
+    }
+
+    #measuroom-home.show-tiles .tiles-photo {
+      display: block !important;
+      z-index: 0;
+      opacity: 1;
+      visibility: visible;
     }
 
     #measuroom-home .measure-tools .tool,
@@ -1309,69 +1381,60 @@ html&gt;body{padding:0}&lt;/style&gt;
 
     #measuroom-home .tile-size-card {
       width: 100%;
-      padding: 24px 20px 22px;
-      border-radius: 30px;
+      padding: 0;
       text-align: center;
     }
 
     #measuroom-home .tile-diagram {
-      display: grid;
-      place-items: center;
-      height: 142px;
-      margin-bottom: 8px;
+      position: relative;
+      height: 430px;
     }
 
     #measuroom-home .tile-diagram svg {
-      width: 174px;
-      height: auto;
+      position: absolute;
+      left: 43%;
+      top: 42%;
+      width: 270px;
+      height: 315px;
+      transform: translate(-50%, -50%);
       stroke-width: 1.55;
+      filter:
+        drop-shadow(0 2px 3px rgba(0, 0, 0, .9))
+        drop-shadow(0 0 8px rgba(0, 0, 0, .72));
     }
 
-    #measuroom-home .tile-diagram text {
-      font-family: var(--font-sans);
-      font-size: 10px;
-      font-weight: 400;
+    #measuroom-home .diagram-input {
+      position: absolute;
+      z-index: 1;
+      width: 104px;
     }
 
-    #measuroom-home .tile-size-copy {
-      display: grid;
-      gap: 4px;
-      margin-bottom: 22px;
+    #measuroom-home .diagram-input.side-a {
+      left: calc(43% - 11px);
+      top: calc(68.5% + 49px);
+      transform: translate(-50%, -50%);
     }
 
-    #measuroom-home .tile-size-copy h2 {
-      font-size: calc(var(--font-size-base) * 1.35);
-      font-weight: 400;
-    }
-
-    #measuroom-home .tile-size-copy p {
-      color: color-mix(in srgb, var(--screen-text) 72%, transparent);
-      font-size: var(--font-size-base);
-    }
-
-    #measuroom-home .dimension-fields {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      text-align: left;
-    }
-
-    #measuroom-home .dimension-field {
-      display: grid;
-      gap: 7px;
-      font-size: calc(var(--font-size-base) * .93);
+    #measuroom-home .diagram-input.side-b {
+      top: 36.5%;
+      left: calc(78% + 13px);
+      transform: translate(-50%, -50%) rotate(-90deg);
     }
 
     #measuroom-home .number-input {
       display: grid;
       grid-template-columns: minmax(0, 1fr) auto;
       align-items: center;
-      min-height: 58px;
-      padding: 0 13px;
-      border: 1px solid color-mix(in srgb, var(--card-foreground) 20%, transparent);
+      min-height: 50px;
+      padding: 0 11px;
+      border: 1px solid var(--glass-border);
       border-radius: 17px;
-      background: color-mix(in srgb, var(--muted) 38%, transparent);
-      box-shadow: inset 0 1px 0 color-mix(in srgb, var(--card-foreground) 13%, transparent);
+      background: linear-gradient(145deg, var(--glass-strong), var(--glass));
+      box-shadow:
+        inset 0 1px 0 color-mix(in srgb, var(--card-foreground) 18%, transparent),
+        0 7px 17px rgba(48, 52, 58, .38);
+      backdrop-filter: blur(18px) saturate(1.25);
+      -webkit-backdrop-filter: blur(18px) saturate(1.25);
     }
 
     #measuroom-home .number-input:focus-within {
@@ -1389,6 +1452,14 @@ html&gt;body{padding:0}&lt;/style&gt;
       background: transparent;
       font: inherit;
       font-size: calc(var(--font-size-base) * 1.2);
+      appearance: textfield;
+      -moz-appearance: textfield;
+    }
+
+    #measuroom-home .number-input input::-webkit-inner-spin-button,
+    #measuroom-home .number-input input::-webkit-outer-spin-button {
+      margin: 0;
+      -webkit-appearance: none;
     }
 
     #measuroom-home .number-input input::placeholder {
@@ -1397,6 +1468,130 @@ html&gt;body{padding:0}&lt;/style&gt;
 
     #measuroom-home .number-input &gt; span {
       color: color-mix(in srgb, var(--screen-text) 65%, transparent);
+    }
+
+    #measuroom-home .settings-area {
+      position: absolute;
+      z-index: 3;
+      top: 142px;
+      left: 28px;
+      right: 28px;
+      bottom: 42px;
+      overflow-y: auto;
+      scrollbar-width: none;
+    }
+
+    #measuroom-home .settings-area::-webkit-scrollbar {
+      display: none;
+    }
+
+    #measuroom-home .settings-stack {
+      display: grid;
+      gap: 14px;
+      padding-bottom: 12px;
+    }
+
+    #measuroom-home .settings-panel {
+      overflow: hidden;
+      border-radius: 28px;
+    }
+
+    #measuroom-home .settings-choice {
+      display: grid;
+      grid-template-columns: 38px minmax(0, 1fr);
+      align-items: center;
+      gap: 12px;
+      padding: 14px;
+    }
+
+    #measuroom-home .settings-icon {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      color: var(--screen-text);
+    }
+
+    #measuroom-home .settings-icon svg {
+      width: 25px;
+      height: 25px;
+      stroke-width: 1.55;
+    }
+
+    #measuroom-home .settings-divider {
+      height: 1px;
+      margin-left: 64px;
+      background: color-mix(in srgb, var(--card-foreground) 17%, transparent);
+    }
+
+    #measuroom-home .segmented-control {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 3px;
+      padding: 3px;
+      border: 1px solid color-mix(in srgb, var(--card-foreground) 14%, transparent);
+      border-radius: 15px;
+      background: color-mix(in srgb, var(--foreground) 18%, transparent);
+    }
+
+    #measuroom-home .segment {
+      min-height: 40px;
+      border: 0;
+      border-radius: 11px;
+      color: color-mix(in srgb, var(--screen-text) 72%, transparent);
+      background: transparent;
+      cursor: pointer;
+      font: inherit;
+      font-size: calc(var(--font-size-base) * .94);
+      transition: color 160ms ease, background 160ms ease, box-shadow 160ms ease;
+    }
+
+    #measuroom-home .segment.is-active {
+      color: var(--active-tool-text);
+      background: rgba(255, 255, 255, .78);
+      box-shadow: 0 3px 10px rgba(48, 52, 58, .28);
+    }
+
+    #measuroom-home .settings-links {
+      display: grid;
+    }
+
+    #measuroom-home .settings-row {
+      min-height: 62px;
+      display: grid;
+      grid-template-columns: 38px minmax(0, 1fr) 22px;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border: 0;
+      border-bottom: 1px solid color-mix(in srgb, var(--card-foreground) 15%, transparent);
+      color: var(--screen-text);
+      background: transparent;
+      font: inherit;
+      text-align: left;
+    }
+
+    #measuroom-home button.settings-row {
+      cursor: pointer;
+    }
+
+    #measuroom-home button.settings-row:active {
+      background: rgba(255, 255, 255, .2);
+    }
+
+    #measuroom-home .settings-row &gt; svg {
+      width: 18px;
+      height: 18px;
+      opacity: .72;
+    }
+
+    #measuroom-home .settings-row:last-child {
+      border-bottom: 0;
+    }
+
+    #measuroom-home .settings-version &gt; :last-child {
+      color: color-mix(in srgb, var(--screen-text) 65%, transparent);
+      text-align: right;
     }
 
     #measuroom-home .tool {
@@ -1473,7 +1668,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     }
 
     #measuroom-home .tool-label {
-      font-weight: 400;
+      font-weight: 300;
       font-size: calc(var(--font-size-base) * 1.35);
     }
 
@@ -1544,7 +1739,8 @@ html&gt;body{padding:0}&lt;/style&gt;
     #measuroom-home .measure-only,
     #measuroom-home .find-only,
     #measuroom-home .calculate-only,
-    #measuroom-home .tiles-only {
+    #measuroom-home .tiles-only,
+    #measuroom-home .settings-only {
       display: none;
     }
 
@@ -1572,8 +1768,17 @@ html&gt;body{padding:0}&lt;/style&gt;
       display: flex;
     }
 
-    #measuroom-home.show-tiles .calculate-only {
-      display: none;
+    #measuroom-home.show-settings header.settings-only {
+      display: grid;
+    }
+
+    #measuroom-home.show-settings main.settings-only {
+      display: block;
+    }
+
+    #measuroom-home.show-tiles header.calculate-only,
+    #measuroom-home.show-tiles main.calculate-only {
+      display: none !important;
     }
 
     #measuroom-home.show-tiles header.tiles-only {
@@ -1601,6 +1806,91 @@ html&gt;body{padding:0}&lt;/style&gt;
       const root = document.getElementById(&#x27;measuroom-home&#x27;);
       const feedback = root.querySelector(&#x27;.feedback&#x27;);
       let feedbackTimer;
+      let currentLanguage = &#x27;en&#x27;;
+      let currentUnits = &#x27;metric&#x27;;
+
+      const translations = {
+        en: {
+          measure: &#x27;Measure&#x27;,
+          findPosition: &#x27;Find position&#x27;,
+          calculate: &#x27;Calculate&#x27;,
+          room: &#x27;Room&#x27;,
+          rooms: &#x27;Rooms&#x27;,
+          area2d: &#x27;2D area&#x27;,
+          center: &#x27;Center&#x27;,
+          midposition: &#x27;Midposition&#x27;,
+          estimatePaint: &#x27;Estimate paint&#x27;,
+          numberOfTiles: &#x27;Number of tiles&#x27;,
+          help: &#x27;Help&#x27;,
+          reportProblem: &#x27;Report a problem / Feedback&#x27;,
+          share: &#x27;Share Measuroom&#x27;,
+          privacy: &#x27;Privacy policy&#x27;,
+          appVersion: &#x27;App version&#x27;,
+          settings: &#x27;Settings&#x27;,
+          saved: &#x27;Saved measurements&#x27;,
+          backHome: &#x27;Back to home&#x27;,
+          backCalculate: &#x27;Back to Calculate&#x27;,
+          selected: &#x27;selected&#x27;,
+          language: &#x27;Language&#x27;,
+          units: &#x27;Units&#x27;
+        },
+        cs: {
+          measure: &#x27;Měření&#x27;,
+          findPosition: &#x27;Najít pozici&#x27;,
+          calculate: &#x27;Výpočty&#x27;,
+          room: &#x27;Místnost&#x27;,
+          rooms: &#x27;Místnosti&#x27;,
+          area2d: &#x27;2D plocha&#x27;,
+          center: &#x27;Střed&#x27;,
+          midposition: &#x27;Střed úsečky&#x27;,
+          estimatePaint: &#x27;Odhad barvy&#x27;,
+          numberOfTiles: &#x27;Počet dlaždic&#x27;,
+          help: &#x27;Nápověda&#x27;,
+          reportProblem: &#x27;Nahlásit problém / Zpětná vazba&#x27;,
+          share: &#x27;Sdílet Measuroom&#x27;,
+          privacy: &#x27;Zásady ochrany soukromí&#x27;,
+          appVersion: &#x27;Verze aplikace&#x27;,
+          settings: &#x27;Nastavení&#x27;,
+          saved: &#x27;Uložená měření&#x27;,
+          backHome: &#x27;Zpět domů&#x27;,
+          backCalculate: &#x27;Zpět na Výpočty&#x27;,
+          selected: &#x27;vybráno&#x27;,
+          language: &#x27;Jazyk&#x27;,
+          units: &#x27;Jednotky&#x27;
+        }
+      };
+
+      const toolTranslationKeys = {
+        &#x27;Measure&#x27;: &#x27;measure&#x27;,
+        &#x27;Find position&#x27;: &#x27;findPosition&#x27;,
+        &#x27;Calculate&#x27;: &#x27;calculate&#x27;,
+        &#x27;Room&#x27;: &#x27;room&#x27;,
+        &#x27;Rooms&#x27;: &#x27;rooms&#x27;,
+        &#x27;2D area&#x27;: &#x27;area2d&#x27;,
+        &#x27;Center&#x27;: &#x27;center&#x27;,
+        &#x27;Midposition&#x27;: &#x27;midposition&#x27;,
+        &#x27;Estimate paint&#x27;: &#x27;estimatePaint&#x27;,
+        &#x27;Number of tiles&#x27;: &#x27;numberOfTiles&#x27;
+      };
+
+      const translateInterface = () =&gt; {
+        const copy = translations[currentLanguage];
+        root.ownerDocument.documentElement.lang = currentLanguage;
+        root.querySelectorAll(&#x27;[data-i18n]&#x27;).forEach((element) =&gt; {
+          element.textContent = copy[element.dataset.i18n];
+        });
+        root.querySelectorAll(&#x27;.tool&#x27;).forEach((button) =&gt; {
+          const key = toolTranslationKeys[button.dataset.tool];
+          if (key != null) button.setAttribute(&#x27;aria-label&#x27;, copy[key]);
+        });
+        root.querySelectorAll(&#x27;[data-action=&quot;settings&quot;]&#x27;).forEach((button) =&gt; button.setAttribute(&#x27;aria-label&#x27;, copy.settings));
+        root.querySelectorAll(&#x27;[data-action=&quot;saved&quot;]&#x27;).forEach((button) =&gt; button.setAttribute(&#x27;aria-label&#x27;, copy.saved));
+        root.querySelectorAll(&#x27;[data-action=&quot;back&quot;]&#x27;).forEach((button) =&gt; {
+          button.setAttribute(&#x27;aria-label&#x27;, button.closest(&#x27;.tiles-only&#x27;) != null ? copy.backCalculate : copy.backHome);
+        });
+        root.querySelector(&#x27;[data-language=&quot;en&quot;]&#x27;).parentElement.setAttribute(&#x27;aria-label&#x27;, copy.language);
+        root.querySelector(&#x27;[data-units=&quot;metric&quot;]&#x27;).parentElement.setAttribute(&#x27;aria-label&#x27;, copy.units);
+      };
 
       const showFeedback = (message) =&gt; {
         window.clearTimeout(feedbackTimer);
@@ -1631,10 +1921,13 @@ html&gt;body{padding:0}&lt;/style&gt;
 
           if (button.dataset.tool === &#x27;Number of tiles&#x27;) {
             root.classList.add(&#x27;show-tiles&#x27;);
+            sideBInput.focus();
+            sideBInput.select();
             return;
           }
 
-          showFeedback(`${button.dataset.tool} selected`);
+          const toolKey = toolTranslationKeys[button.dataset.tool];
+          showFeedback(`${translations[currentLanguage][toolKey]} ${translations[currentLanguage].selected}`);
         });
       });
 
@@ -1643,9 +1936,19 @@ html&gt;body{padding:0}&lt;/style&gt;
           control.classList.add(&#x27;is-tapped&#x27;);
           window.setTimeout(() =&gt; control.classList.remove(&#x27;is-tapped&#x27;), 160);
 
+          if (control.dataset.action === &#x27;settings&#x27;) {
+            root.classList.add(&#x27;show-settings&#x27;);
+            return;
+          }
+
           if (control.dataset.action === &#x27;back&#x27;) {
             if (root.classList.contains(&#x27;show-tiles&#x27;)) {
               root.classList.remove(&#x27;show-tiles&#x27;);
+              return;
+            }
+
+            if (root.classList.contains(&#x27;show-settings&#x27;)) {
+              root.classList.remove(&#x27;show-settings&#x27;);
               return;
             }
 
@@ -1653,9 +1956,88 @@ html&gt;body{padding:0}&lt;/style&gt;
             return;
           }
 
-          showFeedback(control.dataset.action === &#x27;saved&#x27; ? &#x27;Saved measurements&#x27; : &#x27;Settings&#x27;);
+          showFeedback(translations[currentLanguage].saved);
         });
       });
+
+      const sideAInput = root.querySelector(&#x27;[data-dimension=&quot;a&quot;]&#x27;);
+      const sideBInput = root.querySelector(&#x27;[data-dimension=&quot;b&quot;]&#x27;);
+
+      sideAInput.addEventListener(&#x27;keydown&#x27;, (event) =&gt; {
+        if (event.key === &#x27;Enter&#x27;) {
+          event.preventDefault();
+          sideAInput.blur();
+          const copy = translations[currentLanguage];
+          showFeedback(`${copy.numberOfTiles} ${copy.selected}`);
+        }
+      });
+
+      sideBInput.addEventListener(&#x27;keydown&#x27;, (event) =&gt; {
+        if (event.key === &#x27;Enter&#x27;) {
+          event.preventDefault();
+          sideAInput.focus();
+          sideAInput.select();
+        }
+      });
+
+      root.querySelectorAll(&#x27;[data-language]&#x27;).forEach((button) =&gt; {
+        button.addEventListener(&#x27;click&#x27;, () =&gt; {
+          currentLanguage = button.dataset.language;
+          root.querySelectorAll(&#x27;[data-language]&#x27;).forEach((item) =&gt; {
+            const active = item === button;
+            item.classList.toggle(&#x27;is-active&#x27;, active);
+            item.setAttribute(&#x27;aria-pressed&#x27;, String(active));
+          });
+          translateInterface();
+        });
+      });
+
+      root.querySelectorAll(&#x27;[data-units]&#x27;).forEach((button) =&gt; {
+        button.addEventListener(&#x27;click&#x27;, () =&gt; {
+          const nextUnits = button.dataset.units;
+          if (nextUnits === currentUnits) return;
+
+          const convertValue = (input) =&gt; {
+            if (input.value === &#x27;&#x27;) return;
+            const value = Number(input.value);
+            if (!Number.isFinite(value)) return;
+            const converted = nextUnits === &#x27;imperial&#x27; ? value / 2.54 : value * 2.54;
+            input.value = String(Math.round(converted * 100) / 100);
+          };
+
+          convertValue(sideAInput);
+          convertValue(sideBInput);
+          currentUnits = nextUnits;
+          root.querySelectorAll(&#x27;[data-units]&#x27;).forEach((item) =&gt; {
+            const active = item === button;
+            item.classList.toggle(&#x27;is-active&#x27;, active);
+            item.setAttribute(&#x27;aria-pressed&#x27;, String(active));
+          });
+          root.querySelectorAll(&#x27;.unit-suffix&#x27;).forEach((suffix) =&gt; {
+            suffix.textContent = currentUnits === &#x27;metric&#x27; ? &#x27;cm&#x27; : &#x27;in&#x27;;
+          });
+          const unitName = currentUnits === &#x27;metric&#x27;
+            ? (currentLanguage === &#x27;cs&#x27; ? &#x27;centimetrech&#x27; : &#x27;centimeters&#x27;)
+            : (currentLanguage === &#x27;cs&#x27; ? &#x27;palcích&#x27; : &#x27;inches&#x27;);
+          sideAInput.setAttribute(&#x27;aria-label&#x27;, `${currentLanguage === &#x27;cs&#x27; ? &#x27;Strana dlaždice A v&#x27; : &#x27;Tile side A in&#x27;} ${unitName}`);
+          sideBInput.setAttribute(&#x27;aria-label&#x27;, `${currentLanguage === &#x27;cs&#x27; ? &#x27;Strana dlaždice B v&#x27; : &#x27;Tile side B in&#x27;} ${unitName}`);
+        });
+      });
+
+      const settingsItemKeys = {
+        help: &#x27;help&#x27;,
+        report: &#x27;reportProblem&#x27;,
+        share: &#x27;share&#x27;,
+        privacy: &#x27;privacy&#x27;
+      };
+
+      root.querySelectorAll(&#x27;[data-settings-item]&#x27;).forEach((button) =&gt; {
+        button.addEventListener(&#x27;click&#x27;, () =&gt; {
+          showFeedback(translations[currentLanguage][settingsItemKeys[button.dataset.settingsItem]]);
+        });
+      });
+
+      translateInterface();
     })();
   &lt;/script&gt;
 &lt;/div&gt;
