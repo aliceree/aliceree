@@ -801,7 +801,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 
     &lt;main class=&quot;tool-area measure-only&quot;&gt;
       &lt;div class=&quot;tool-stack measure-tools&quot; aria-label=&quot;Measure tools&quot;&gt;
-        &lt;button class=&quot;tool glass&quot; type=&quot;button&quot; data-tool=&quot;Room&quot; aria-label=&quot;Room&quot;&gt;
+        &lt;button class=&quot;tool glass is-premium-locked&quot; type=&quot;button&quot; data-tool=&quot;Room&quot; aria-label=&quot;Room, locked&quot;&gt;
           &lt;span class=&quot;tool-icon&quot;&gt;
             &lt;svg viewBox=&quot;0 0 48 48&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;
               &lt;g transform=&quot;rotate(-90 24 24)&quot;&gt;
@@ -812,9 +812,9 @@ html&gt;body{padding:0}&lt;/style&gt;
             &lt;/svg&gt;
           &lt;/span&gt;
           &lt;span class=&quot;tool-label&quot; data-i18n=&quot;room&quot;&gt;Room&lt;/span&gt;
-          &lt;span class=&quot;chevron&quot;&gt;&lt;i data-lucide=&quot;chevron-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+          &lt;span class=&quot;lock&quot;&gt;&lt;i data-lucide=&quot;lock&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;
         &lt;/button&gt;
-        &lt;button class=&quot;tool glass&quot; type=&quot;button&quot; data-tool=&quot;Rooms&quot; aria-label=&quot;Rooms&quot;&gt;
+        &lt;button class=&quot;tool glass is-premium-locked&quot; type=&quot;button&quot; data-tool=&quot;Rooms&quot; aria-label=&quot;Rooms, locked&quot;&gt;
           &lt;span class=&quot;tool-icon&quot;&gt;
             &lt;svg viewBox=&quot;0 0 48 48&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;
               &lt;path d=&quot;M6 42V6h36v36H6Z&quot;&gt;&lt;/path&gt;
@@ -824,7 +824,7 @@ html&gt;body{padding:0}&lt;/style&gt;
             &lt;/svg&gt;
           &lt;/span&gt;
           &lt;span class=&quot;tool-label&quot; data-i18n=&quot;rooms&quot;&gt;Rooms&lt;/span&gt;
-          &lt;span class=&quot;chevron&quot;&gt;&lt;i data-lucide=&quot;chevron-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+          &lt;span class=&quot;lock&quot;&gt;&lt;i data-lucide=&quot;lock&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;
         &lt;/button&gt;
         &lt;button class=&quot;tool glass&quot; type=&quot;button&quot; data-tool=&quot;2D area&quot; aria-label=&quot;2D area&quot;&gt;
           &lt;span class=&quot;tool-icon&quot;&gt;
@@ -1591,7 +1591,11 @@ html&gt;body{padding:0}&lt;/style&gt;
 
     #measuroom-home .settings-version &gt; :last-child {
       color: color-mix(in srgb, var(--screen-text) 65%, transparent);
+      min-width: max-content;
+      justify-self: end;
+      margin-right: calc(4px + 1ch);
       text-align: right;
+      white-space: nowrap;
     }
 
     #measuroom-home .tool {
@@ -1687,6 +1691,38 @@ html&gt;body{padding:0}&lt;/style&gt;
       background: linear-gradient(145deg, color-mix(in srgb, var(--muted) 48%, transparent), color-mix(in srgb, var(--muted) 30%, transparent));
     }
 
+    #measuroom-home .tool.is-premium-locked {
+      color: color-mix(in srgb, var(--screen-text) 68%, transparent);
+      border-color: color-mix(in srgb, var(--card-foreground) 14%, transparent);
+      box-shadow:
+        inset 0 1px 0 color-mix(in srgb, var(--card-foreground) 11%, transparent),
+        0 5px 14px rgba(48, 52, 58, .25);
+    }
+
+    #measuroom-home .tool.is-premium-locked:not(:active):not(.is-tapped),
+    #measuroom-home .tool.is-premium-locked:active,
+    #measuroom-home .tool.is-premium-locked.is-tapped {
+      background: linear-gradient(145deg, color-mix(in srgb, var(--muted) 34%, transparent), color-mix(in srgb, var(--muted) 20%, transparent));
+    }
+
+    #measuroom-home .tool.is-premium-locked .tool-icon {
+      opacity: .72;
+    }
+
+    #measuroom-home .tool.is-premium-locked .lock svg {
+      width: 27px;
+      height: 27px;
+      stroke-width: 1.55;
+    }
+
+    #measuroom-home .tool.is-premium-locked .lock {
+      right: 22px;
+    }
+
+    #measuroom-home .tool.is-premium-locked.lock-bump .lock {
+      animation: premium-lock-bump 320ms ease;
+    }
+
     #measuroom-home .feedback {
       position: absolute;
       z-index: 6;
@@ -1734,6 +1770,13 @@ html&gt;body{padding:0}&lt;/style&gt;
       0%, 100% { transform: translateX(0); }
       33% { transform: translateX(-4px) rotate(-7deg); }
       66% { transform: translateX(4px) rotate(7deg); }
+    }
+
+    @keyframes premium-lock-bump {
+      0%, 100% { transform: translateY(-50%) translateX(0) rotate(0); }
+      25% { transform: translateY(-50%) translateX(-4px) rotate(-8deg); }
+      50% { transform: translateY(-50%) translateX(4px) rotate(8deg); }
+      75% { transform: translateY(-50%) translateX(-3px) rotate(-6deg); }
     }
 
     #measuroom-home .measure-only,
@@ -1831,6 +1874,8 @@ html&gt;body{padding:0}&lt;/style&gt;
           backHome: &#x27;Back to home&#x27;,
           backCalculate: &#x27;Back to Calculate&#x27;,
           selected: &#x27;selected&#x27;,
+          locked: &#x27;is locked&#x27;,
+          lockedAria: &#x27;locked&#x27;,
           language: &#x27;Language&#x27;,
           units: &#x27;Units&#x27;
         },
@@ -1841,9 +1886,9 @@ html&gt;body{padding:0}&lt;/style&gt;
           room: &#x27;Místnost&#x27;,
           rooms: &#x27;Místnosti&#x27;,
           area2d: &#x27;2D plocha&#x27;,
-          center: &#x27;Střed&#x27;,
+          center: &#x27;Střed plochy&#x27;,
           midposition: &#x27;Střed úsečky&#x27;,
-          estimatePaint: &#x27;Odhad barvy&#x27;,
+          estimatePaint: &#x27;Kolik barvy?&#x27;,
           numberOfTiles: &#x27;Počet dlaždic&#x27;,
           help: &#x27;Nápověda&#x27;,
           reportProblem: &#x27;Nahlásit problém / Zpětná vazba&#x27;,
@@ -1855,6 +1900,8 @@ html&gt;body{padding:0}&lt;/style&gt;
           backHome: &#x27;Zpět domů&#x27;,
           backCalculate: &#x27;Zpět na Výpočty&#x27;,
           selected: &#x27;vybráno&#x27;,
+          locked: &#x27;uzamčeno&#x27;,
+          lockedAria: &#x27;uzamčeno&#x27;,
           language: &#x27;Jazyk&#x27;,
           units: &#x27;Jednotky&#x27;
         }
@@ -1881,7 +1928,10 @@ html&gt;body{padding:0}&lt;/style&gt;
         });
         root.querySelectorAll(&#x27;.tool&#x27;).forEach((button) =&gt; {
           const key = toolTranslationKeys[button.dataset.tool];
-          if (key != null) button.setAttribute(&#x27;aria-label&#x27;, copy[key]);
+          if (key != null) {
+            const lockedSuffix = button.classList.contains(&#x27;is-premium-locked&#x27;) ? `, ${copy.lockedAria}` : &#x27;&#x27;;
+            button.setAttribute(&#x27;aria-label&#x27;, `${copy[key]}${lockedSuffix}`);
+          }
         });
         root.querySelectorAll(&#x27;[data-action=&quot;settings&quot;]&#x27;).forEach((button) =&gt; button.setAttribute(&#x27;aria-label&#x27;, copy.settings));
         root.querySelectorAll(&#x27;[data-action=&quot;saved&quot;]&#x27;).forEach((button) =&gt; button.setAttribute(&#x27;aria-label&#x27;, copy.saved));
@@ -1903,6 +1953,16 @@ html&gt;body{padding:0}&lt;/style&gt;
         button.addEventListener(&#x27;click&#x27;, () =&gt; {
           button.classList.add(&#x27;is-tapped&#x27;);
           window.setTimeout(() =&gt; button.classList.remove(&#x27;is-tapped&#x27;), 160);
+
+          if (button.classList.contains(&#x27;is-premium-locked&#x27;)) {
+            button.classList.remove(&#x27;lock-bump&#x27;);
+            void button.offsetWidth;
+            button.classList.add(&#x27;lock-bump&#x27;);
+            const copy = translations[currentLanguage];
+            const toolName = copy[toolTranslationKeys[button.dataset.tool]];
+            showFeedback(currentLanguage === &#x27;en&#x27; ? `${toolName} ${copy.locked}` : `${toolName} — ${copy.locked}`);
+            return;
+          }
 
           if (button.dataset.tool === &#x27;Measure&#x27;) {
             root.classList.add(&#x27;show-measure&#x27;);
