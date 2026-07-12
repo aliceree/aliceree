@@ -853,7 +853,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 
     &lt;main class=&quot;tool-area find-only&quot;&gt;
       &lt;div class=&quot;tool-stack find-tools&quot; aria-label=&quot;Find position tools&quot;&gt;
-        &lt;button class=&quot;tool glass&quot; type=&quot;button&quot; data-tool=&quot;Center&quot; aria-label=&quot;Center&quot;&gt;
+        &lt;button class=&quot;tool glass is-premium-locked&quot; type=&quot;button&quot; data-tool=&quot;Center&quot; aria-label=&quot;Center, locked&quot;&gt;
           &lt;span class=&quot;tool-icon&quot;&gt;
             &lt;svg viewBox=&quot;0 0 48 48&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;
               &lt;rect x=&quot;3&quot; y=&quot;11&quot; width=&quot;42&quot; height=&quot;26&quot; rx=&quot;2&quot;&gt;&lt;/rect&gt;
@@ -863,9 +863,9 @@ html&gt;body{padding:0}&lt;/style&gt;
             &lt;/svg&gt;
           &lt;/span&gt;
           &lt;span class=&quot;tool-label&quot; data-i18n=&quot;center&quot;&gt;Center&lt;/span&gt;
-          &lt;span class=&quot;chevron&quot;&gt;&lt;i data-lucide=&quot;chevron-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+          &lt;span class=&quot;lock&quot;&gt;&lt;i data-lucide=&quot;lock&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;
         &lt;/button&gt;
-        &lt;button class=&quot;tool glass&quot; type=&quot;button&quot; data-tool=&quot;Midposition&quot; aria-label=&quot;Midposition&quot;&gt;
+        &lt;button class=&quot;tool glass is-premium-locked&quot; type=&quot;button&quot; data-tool=&quot;Midposition&quot; aria-label=&quot;Midposition, locked&quot;&gt;
           &lt;span class=&quot;tool-icon&quot;&gt;
             &lt;svg viewBox=&quot;0 0 48 48&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;
               &lt;path d=&quot;M3 24h42&quot;&gt;&lt;/path&gt;
@@ -873,7 +873,7 @@ html&gt;body{padding:0}&lt;/style&gt;
             &lt;/svg&gt;
           &lt;/span&gt;
           &lt;span class=&quot;tool-label&quot; data-i18n=&quot;midposition&quot;&gt;Midposition&lt;/span&gt;
-          &lt;span class=&quot;chevron&quot;&gt;&lt;i data-lucide=&quot;chevron-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+          &lt;span class=&quot;lock&quot;&gt;&lt;i data-lucide=&quot;lock&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;
         &lt;/button&gt;
       &lt;/div&gt;
     &lt;/main&gt;
@@ -901,7 +901,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           &lt;span class=&quot;tool-label&quot; data-i18n=&quot;estimatePaint&quot;&gt;Estimate paint&lt;/span&gt;
           &lt;span class=&quot;chevron&quot;&gt;&lt;i data-lucide=&quot;chevron-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;
         &lt;/button&gt;
-        &lt;button class=&quot;tool glass&quot; type=&quot;button&quot; data-tool=&quot;Number of tiles&quot; aria-label=&quot;Number of tiles&quot;&gt;
+        &lt;button class=&quot;tool glass is-premium-locked&quot; type=&quot;button&quot; data-tool=&quot;Number of tiles&quot; aria-label=&quot;Number of tiles, locked&quot;&gt;
           &lt;span class=&quot;tool-icon&quot;&gt;
             &lt;svg viewBox=&quot;0 0 48 48&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;
               &lt;g transform=&quot;rotate(-90 24 24)&quot;&gt;
@@ -912,7 +912,7 @@ html&gt;body{padding:0}&lt;/style&gt;
             &lt;/svg&gt;
           &lt;/span&gt;
           &lt;span class=&quot;tool-label&quot; data-i18n=&quot;numberOfTiles&quot;&gt;Number of tiles&lt;/span&gt;
-          &lt;span class=&quot;chevron&quot;&gt;&lt;i data-lucide=&quot;chevron-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+          &lt;span class=&quot;lock&quot;&gt;&lt;i data-lucide=&quot;lock&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/span&gt;
         &lt;/button&gt;
       &lt;/div&gt;
     &lt;/main&gt;
@@ -1365,7 +1365,7 @@ html&gt;body{padding:0}&lt;/style&gt;
 
     #measuroom-home .tool-stack {
       display: grid;
-      gap: 12px;
+      gap: 18px;
     }
 
     #measuroom-home .tile-size-area {
@@ -1694,6 +1694,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     #measuroom-home .tool.is-premium-locked {
       color: color-mix(in srgb, var(--screen-text) 68%, transparent);
       border-color: color-mix(in srgb, var(--card-foreground) 14%, transparent);
+      filter: brightness(.9) saturate(.72);
       box-shadow:
         inset 0 1px 0 color-mix(in srgb, var(--card-foreground) 11%, transparent),
         0 5px 14px rgba(48, 52, 58, .25);
@@ -1836,7 +1837,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       #measuroom-home .device { border-radius: 40px; }
       #measuroom-home .tool-area { left: 22px; right: 22px; }
       #measuroom-home .tool { min-height: 116px; }
-      #measuroom-home .tool-stack { gap: 9px; }
+      #measuroom-home .tool-stack { gap: 13.5px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
