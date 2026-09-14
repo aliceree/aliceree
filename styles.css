@@ -562,45 +562,18 @@ a {
   border-radius: var(--radius);
   margin-left: auto;
   margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
 .contact__item {
-  display: grid;
-  grid-template-columns: 120px minmax(0, 1fr);
-  gap: 16px;
-  padding: 16px 18px;
-  align-items: center;
+  display: flex;
   justify-content: center;
-  justify-items: start;
-  text-align: left;
-}
-
-
-.contact__label {
-  color: rgba(23, 23, 23, 0.74);
-  font-size: 13px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  position: relative;
-  display: inline-block;
-  z-index: 0;
-}
-
-.contact__label::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  width: max(calc(100% + 12px), 140px);
-  top: 50%;
-  height: 150%;
-  background-image: url("./highlither.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: auto 100%;
-  opacity: 1;
-  transform: translate(-50%, -48%) scale(1.5);
-  z-index: -1;
-  pointer-events: none;
+  align-items: center;
+  width: 100%;
+  padding: 10px 0;
 }
 
 .contact__value {
@@ -608,19 +581,53 @@ a {
   font-weight: 400;
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  text-align: center;
   min-width: 0;
-  justify-content: flex-start;
 }
 
 .contact__value a {
+  position: relative;
+  display: inline-block;
   color: inherit;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  font-weight: 400;
   transition: color 160ms ease;
   max-width: 100%;
   overflow-wrap: anywhere;
+  text-align: center;
+  padding: 6px 10px;
+  z-index: 0;
 }
 
-.contact__value a:hover {
+.contact__value a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: max(calc(100% + 14px), 140px);
+  top: 50%;
+  height: 150%;
+  background-image: url("./highlither.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto 100%;
+  opacity: 0;
+  transform: translate(-50%, -48%) scale(0.96);
+  transition: opacity 180ms ease, transform 200ms ease;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.contact__value a:hover::after,
+.contact__value a:focus-visible::after {
+  opacity: 1;
+  transform: translate(-50%, -48%) scale(1.1);
+}
+
+.contact__value a:hover,
+.contact__value a:focus-visible {
   color: var(--text);
 }
 
@@ -628,16 +635,4 @@ a {
   outline: 2px solid rgba(0, 0, 0, 0.45);
   outline-offset: 4px;
   border-radius: 6px;
-}
-
-@media (max-width: 560px) {
-  .contact__item {
-    grid-template-columns: 1fr;
-    justify-items: center;
-    text-align: center;
-    gap: 8px;
-  }
-  .contact__label {
-    margin-bottom: 2px;
-  }
 }
