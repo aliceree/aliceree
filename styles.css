@@ -144,9 +144,16 @@ a {
 
 /* navigační odkazy (padding, průhledný spodní border, tlumená barva, přechody) */
 .nav__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  line-height: 1;
   padding: 6px 6px;
   color: var(--text);
   transition: color 160ms ease;
+  position: relative;
+  z-index: 0;
 }
 
 .nav__link:hover {
