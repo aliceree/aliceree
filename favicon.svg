@@ -8,5 +8,5 @@
   <g clip-path="url(#clip-photo)">
     <image href="./AliceRee.png" x="0" y="0" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
   </g>
-  <rect x="3.5" y="3.5" width="57" height="57" rx="15.5" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="1.5"/>
+  <rect x="3.5" y="3.5" width="57" height="57" rx="15.5" fill="none" stroke="rgba(0,0,0,0.12)" stroke-width="1.2"/>
 </svg>
