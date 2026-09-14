@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Alice Ree favicon">
+  <defs>
+    <clipPath id="clip-photo">
+      <rect x="4" y="4" width="56" height="56" rx="14" />
+    </clipPath>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#f8dfe7"/>
+  <g clip-path="url(#clip-photo)">
+    <image href="./AliceRee.png" x="0" y="0" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
+  </g>
+  <rect x="3.5" y="3.5" width="57" height="57" rx="15.5" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="1.5"/>
+</svg>
