@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alice's Team Generator</title>
+    <style>
+      :root {
+        --bg: #000000;
+        --text: #ffffff;
+        --muted: #a3a3a3;
+        --line: #333333;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        padding: 24px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: 300;
+        background: var(--bg);
+        color: var(--text);
+        display: grid;
+        place-items: center;
+      }
+
+      main {
+        width: min(780px, 92vw);
+      }
+
+      .screen {
+        display: none;
+        width: 100%;
+        padding: 8px 0;
+      }
+
+      .screen.active {
+        display: block;
+      }
+
+      form {
+        display: grid;
+        gap: 28px;
+        font-family: inherit;
+        position: relative;
+        top: 96px;
+      }
+
+      label {
+        font-size: 14px;
+        color: var(--muted);
+        letter-spacing: 0.01em;
+        font-family: inherit;
+      }
+
+      input,
+      textarea {
+        font-family: inherit;
+        width: 100%;
+        background: transparent;
+        border: 0;
+        border-radius: 0;
+        padding: 8px 0;
+        font-size: 18px;
+        font-weight: 300;
+        color: var(--text);
+        text-align: center;
+        outline: none;
+        transition: border-color 0.2s ease;
+      }
+
+      input:focus,
+      textarea:focus {
+        border-color: var(--text);
+      }
+
+      .inline-field {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .inline-field input {
+        width: 80px;
+        flex: 0 0 80px;
+      }
+
+      .inline-field textarea {
+        flex: 0 1 420px;
+        width: min(420px, 100%);
+        min-width: 220px;
+        padding: 4px 0 8px;
+        resize: none;
+        line-height: 1.5;
+        min-height: calc(1.5em * 15);
+        height: calc(1.5em * 15);
+      }
+
+      .tooltip {
+        position: fixed;
+        z-index: 1;
+        left: 50%;
+        bottom: 24px;
+        max-width: min(280px, calc(100vw - 32px));
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.35;
+        text-align: center;
+        pointer-events: none;
+        opacity: 0;
+        transform: translateX(-50%);
+        transition: opacity 0.15s ease;
+      }
+
+      .tooltip.visible {
+        opacity: 1;
+      }
+
+      input[type="number"] {
+        appearance: textfield;
+      }
+
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      ::placeholder {
+        color: #666666;
+      }
+
+      button {
+        border: 0;
+        border-bottom: 1px solid var(--text);
+        background: transparent;
+        color: var(--text);
+        padding: 8px 0;
+        font: inherit;
+        font-size: 14px;
+        cursor: pointer;
+        transition: color 0.2s ease, border-color 0.2s ease;
+      }
+
+      button:hover {
+        color: var(--muted);
+        border-color: var(--muted);
+      }
+
+      .hint {
+        display: none;
+      }
+
+      .teams {
+        display: grid;
+        gap: 12px;
+        justify-items: center;
+      }
+
+      .team {
+        padding: 12px 0;
+        color: var(--text);
+        font-size: 18px;
+        text-align: center;
+        width: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <!-- Intro screen: enter names and team size -->
+      <section class="screen active" id="intro-screen">
+        <form id="team-form">
+          <div class="inline-field">
+            <input
+              id="team-size"
+              name="teamSize"
+              type="number"
+              min="1"
+              value="2"
+              aria-label="Number of members per team"
+              data-tooltip="This number sets the number of members per team."
+              required
+            />
+          </div>
+          <div class="inline-field">
+            <textarea
+              id="names"
+              name="names"
+              rows="15"
+              placeholder="Alice, Bob, Carol, Dave"
+              autocomplete="off"
+              aria-label="Member names"
+              data-tooltip="Enter the names of the team members in this field."
+              required
+            ></textarea>
+          </div>
+        </form>
+      </section>
+
+      <!-- Results screen: display the generated teams -->
+      <section class="screen" id="results-screen" aria-live="polite">
+        <div id="teams" class="teams"></div>
+      </section>
+    </main>
+
+    <script>
+      // Find the relevant elements
+      const introScreen = document.getElementById("intro-screen");
+      const resultsScreen = document.getElementById("results-screen");
+      const form = document.getElementById("team-form");
+      const teamsList = document.getElementById("teams");
+      const namesInput = document.getElementById("names");
+      const sizeInput = document.getElementById("team-size");
+      const tooltip = document.createElement("div");
+      let tooltipTimer;
+
+      tooltip.className = "tooltip";
+      tooltip.setAttribute("role", "tooltip");
+      document.body.appendChild(tooltip);
+
+      const showTooltip = (element) => {
+        tooltip.textContent = element.dataset.tooltip;
+        tooltip.classList.add("visible");
+      };
+
+      const hideTooltip = () => {
+        clearTimeout(tooltipTimer);
+        tooltip.classList.remove("visible");
+      };
+
+      [sizeInput, namesInput].forEach((element) => {
+        element.addEventListener("mouseenter", () => {
+          clearTimeout(tooltipTimer);
+          tooltipTimer = setTimeout(() => showTooltip(element), 1000);
+        });
+        element.addEventListener("mouseleave", hideTooltip);
+        element.addEventListener("blur", hideTooltip);
+      });
+
+      let currentScreen = "intro";
+      let state = {
+        names: [],
+        teamSize: 2,
+      };
+
+      // Switch screens (intro -> results)
+      const showScreen = (name) => {
+        currentScreen = name;
+        introScreen.classList.toggle("active", name === "intro");
+        resultsScreen.classList.toggle("active", name === "results");
+      };
+
+      // Shuffle the array using Fisher-Yates
+      const shuffle = (arr) => {
+        const copy = [...arr];
+        for (let i = copy.length - 1; i > 0; i -= 1) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [copy[i], copy[j]] = [copy[j], copy[i]];
+        }
+        return copy;
+      };
+
+      // Split the names into teams and render the results
+      const renderTeams = () => {
+        teamsList.innerHTML = "";
+        const shuffled = shuffle(state.names);
+        const baseSize = Math.max(1, state.teamSize);
+        const teamCount = Math.floor(shuffled.length / baseSize);
+        const remainder = shuffled.length % baseSize;
+
+        let teams = [];
+        let cursor = 0;
+
+        // Create full teams of the base size
+        for (let i = 0; i < teamCount; i += 1) {
+          teams.push(shuffled.slice(cursor, cursor + baseSize));
+          cursor += baseSize;
+        }
+
+        const leftover = shuffled.slice(cursor);
+
+        // If members remain and at least one full team exists,
+        // distribute them evenly so no team is left too small
+        if (remainder > 0 && teamCount > 0) {
+          leftover.forEach((member, idx) => {
+            teams[idx % teams.length].push(member);
+          });
+        } else if (teamCount === 0 && leftover.length) {
+          // If there are fewer people than the team size, keep them in one team
+          teams = [leftover];
+        }
+
+        teams.forEach((members) => {
+          const team = document.createElement("div");
+          team.className = "team";
+          team.textContent = members.join(", ");
+          teamsList.appendChild(team);
+        });
+      };
+
+      // Handle form submission, save the state, and show the results
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const rawNames = namesInput.value
+          .split(/[,\n]/)
+          .map((name) => name.trim())
+          .filter(Boolean);
+        const teamSize = Number(sizeInput.value);
+
+        if (!rawNames.length || !teamSize || teamSize < 1) {
+          namesInput.focus();
+          return;
+        }
+
+        state = {
+          names: rawNames,
+          teamSize,
+        };
+
+        renderTeams();
+        showScreen("results");
+      });
+
+      // Handle Enter: submit on the intro screen and reshuffle on the results screen
+      document.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter") return;
+
+        if (currentScreen === "intro") {
+          event.preventDefault();
+          form.requestSubmit();
+        } else if (currentScreen === "results") {
+          event.preventDefault();
+          renderTeams();
+        }
+      });
+
+      // Focus the names field initially
+      namesInput.focus();
+    </script>
+  </body>
+</html>
